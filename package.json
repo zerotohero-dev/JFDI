@@ -1,0 +1,27 @@
+{
+  "name": "jfdi",
+  "version": "0.0.0",
+  "description": "A Hacker's Way of Getting Things Done",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/v0lkan/JFDI.git"
+  },
+  "keywords": [
+    "GTD",
+    "JFDI",
+    "TODO",
+    "lists",
+    "tasks",
+    "command",
+    "line"
+  ],
+  "author": "Volkan Özçelik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/v0lkan/JFDI/issues"
+  }
+}
