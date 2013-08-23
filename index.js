@@ -1,4 +1,7 @@
 #! /usr/bin/env node
 
-console.log('Hello World.');
-console.log(process.argv);
+var JFDI = require('./lib/JFDI');
+
+//console.log(process.argv);
+
+JFDI.help();
