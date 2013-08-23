@@ -1,6 +1,10 @@
 {
   "name": "jfdi",
-  "version": "0.0.0",
+  "preferGlobal": true,
+  "bin": {
+    "jfdi" : "index.js"
+  },
+  "version": "0.0.1",
   "description": "A Hacker's Way of Getting Things Done",
   "main": "index.js",
   "scripts": {
