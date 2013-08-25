@@ -2,9 +2,9 @@
   "name": "jfdi",
   "preferGlobal": true,
   "bin": {
-    "jfdi" : "index.js"
+    "jfdi": "index.js"
   },
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A Hacker's Way of Getting Things Done",
   "main": "index.js",
   "scripts": {
@@ -27,5 +27,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/v0lkan/JFDI/issues"
+  },
+  "dependencies": {
+    "commander": "~2.0.0"
   }
 }
