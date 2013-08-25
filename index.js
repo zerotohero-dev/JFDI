@@ -105,27 +105,22 @@ function init() {
     var argLen = args.length;
 
     if (args.length === 3 && args[2] !== 'today' && args[2] !== 'tomorrow' &&
-                args[2] !== '-t' && args[2] !== '--tomorrow') {
+                args[2] !== '-t' && args[2] !== '--tomorrow' &&
+                args[2] !== '-h' && args[2] !== '--help' && args[2] !== 'all') {
         args[3] = args[2];
         args[2] = '-a';
-    }
-
-    if(args[2] === '-e' || args[2] === '--expedite') {
+    } else if (argLen === kNoArgs) {
+        args.push('--list');
+        args.push('today');
+    } else if(args[2] === '-e' || args[2] === '--expedite') {
         if(args[4] === undefined) {
             args[4] = 'tomorrow';
         }
-    }
-
-    if(args[2] === '-t' || args[2] === '--tomorrow') {
+    } else if(args[2] === '-t' || args[2] === '--tomorrow') {
         args[2] = '--list';
         args[3] = 'tomorrow';
 
         args.length = 4;
-    }
-
-    if (argLen === kNoArgs) {
-        args.push('--list');
-        args.push('today');
     }
 
     if(args.indexOf('today') === -1 && args.indexOf('tomorrow') === -1) {
@@ -136,7 +131,7 @@ function init() {
         args.splice(2, 0, '--do');
     }
 
-    info(process.argv);
+    log(process.argv);
 
     // TODO: auto replace it from package JSON
     program.version('0.0.1');
