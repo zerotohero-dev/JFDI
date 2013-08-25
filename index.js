@@ -131,7 +131,7 @@ function init() {
         args.splice(2, 0, '--do');
     }
 
-    log(process.argv);
+    println(process.argv);
 
     // TODO: auto replace it from package JSON
     program.version('0.0.1');
