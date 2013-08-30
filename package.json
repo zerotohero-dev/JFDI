@@ -29,6 +29,7 @@
     "url": "https://github.com/v0lkan/JFDI/issues"
   },
   "dependencies": {
-    "commander": "~2.0.0"
+    "commander": "~2.0.0",
+    "grunt": "~0.4.1"
   }
 }
