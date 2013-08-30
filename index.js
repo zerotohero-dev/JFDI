@@ -40,14 +40,27 @@ function handleCallbackResult(error, goals) {
     }
 
     var realm = goals.realm;
+    var query = goals.query;
 
     switch (realm) {
         case 'today':
+            if (query) {
+                println('   ### "' + query + '" for Today ###');
+
+                break;
+            }
+
             println('   ### JFDI List For Today ###');
 
             break;
 
         case 'tomorrow':
+            if (query) {
+                println('   ### "' + query + '" for Today ###');
+
+                break;
+            }
+
             println('   ### Upcoming JFDI Stuff ###');
 
             break;
@@ -63,17 +76,33 @@ function handleCallbackResult(error, goals) {
     if (goals.length === 0) {
         switch (realm) {
             case 'today':
+                if (query) {
+                    println('');
+                    println('       There are no matching goals for your query "' + query + '" for today :(');
+                    println('');
+
+                    break;
+                }
+
                 println('');
                 println('       *Zero Inbox* for today! Hooray!');
                 println('');
                 println('       Sample Usage:');
-                println('           Add a Goal       : jfdi -a "Save the world; one goal at a time."');
+                println('           Add a Goal       : jfdi [-a] "Save the world; one goal at a time."');
                 println('           List Goals       : jfdi -l');
                 println('           List All Commands: jfdi -h');
                 println('');
 
                 break;
             case 'tomorrow':
+                if (query) {
+                    println('');
+                    println('       There are no matching goals for your query "' + query + '" for the near future :(');
+                    println('');
+
+                    break;
+                }
+
                 println('');
                 println('       Your foreseeable future is pretty blank. Why not add some tasks?');
                 println('');
@@ -98,17 +127,71 @@ function handleCallbackResult(error, goals) {
     println('');
 }
 
+// If you define a new command or option, make sure you update this, too.
+// If a command is NOT a special command, then it means that it will implicitly
+// called with add.
+// i.e.
+//
+//      jfdi "Save the cheerleader; save the world!"
+//
+// will be implicityl converted to
+//
+//      jfdi --add "Save the cheerleader; save the world!"
+//
+// If the text is in this list, then this implicit conversion will not be done.
+// So
+//
+//      jfdi today
+//
+// will be
+//
+//      jfdi --list today // note that we don't add `--add` now.
+var specialCommands = [
+    // TODO: be DRY, make them constants!
+    'today',
+    'tomorrow',
+    'all',
+    '-t', '--tomorrow',
+    '-h', '--help'
+];
+
+var knownCommands = [
+    // TODO: be DRY, make them constants!
+    'today',
+    'tomorrow',
+    'all',
+    '-t', '--tomorrow',
+    '-h', '--help',
+    '-V', '--version',
+    '-a', '--add',
+    '-f', '--find',
+    '-d', '--defer',
+    '-p', '--prioritize',
+    '-l', '--list',
+    '-t', '--tomorrow',
+    '-x', '--do'
+];
+
+function isSpecialCommand(initialCommand) {
+    return specialCommands.indexOf(initialCommand) > -1;
+}
+
+function isKnownCommand(command) {
+    return knownCommands.indexOf(command) > -1;
+}
+
 function init() {
     var kNoArgs = 2;
+    var kSingleCommand = 3;
     var kNotImplemented = 'This functionality has not been implemented yet.';
     var args = process.argv;
     var argLen = args.length;
 
-    if (args.length === 3 && args[2] !== 'today' && args[2] !== 'tomorrow' &&
-                args[2] !== '-t' && args[2] !== '--tomorrow' &&
-                args[2] !== '-h' && args[2] !== '--help' && args[2] !== 'all') {
+    var initialCommand = args[2];
+
+    if (args.length === kSingleCommand && !isSpecialCommand(initialCommand)) {
         args[3] = args[2];
-        args[2] = '-a';
+        args[2] = '--add';
     } else if (argLen === kNoArgs) {
         args.push('--list');
         args.push('today');
@@ -131,7 +214,25 @@ function init() {
         args.splice(2, 0, '--do');
     }
 
-    info(process.argv);
+    if (!isKnownCommand(args[2])) {
+        if (args.length > 4) {
+            args.splice(2, 0, '--add');
+            args[3] = args.splice(3, args.length - 4).join(' ');
+            args[4] = 'today';
+        }
+    } else if (args[2] === '-a' || args[2] === '--add') {
+        if (args.length > 4) {
+            args[3] = args.splice(3, args.length - 4).join(' ');
+            args[4] = 'today';
+        }
+    } else if (args[2] === '-f' || args[2] === '--find') {
+        if (args.length > 4) {
+            args[3] = args.splice(3, args.length - 4).join(' ');
+            args[4] = 'today';
+        }
+    }
+
+    println(process.argv);
 
     // TODO: auto replace it from package JSON
     program.version('0.0.1');
@@ -179,7 +280,7 @@ function init() {
         } else if (query) {
             info('find');
 
-            println(kNotImplemented + ' (find)');
+            JFDI.find('today', query, handleCallbackResult);
         } else if (later !== undefined) {
             info('later');
 
@@ -220,7 +321,8 @@ function init() {
             // TODO: localization:
             println('\n*** You cannot add a goal to tomorrow\'s queue. Add it to today\'s queue, then defer it. Type `jfdi -h` for more info. ***\n');
         } else if (query) {
-           println(kNotImplemented + ' (find)');
+
+            JFDI.find('tomorrow', query, handleCallbackResult);
         } else if (later !== undefined) {
             println('\n*** You cannot defer a future goal. Did you mean to --expedite it, instead? Type `jfdi -h` for more info. ***\n');
         } else if (complete !== undefined) {
