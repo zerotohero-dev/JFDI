@@ -14,14 +14,104 @@
  */
 
 // TODO: move these to jshint.rc
-/*global process, console*/
+/*global process, console, __dirname*/
 
 'use strict';
 
-var JFDI = require('./lib/JFDI');
 var program = require('commander');
+var prompt = require('prompt');
+var path = require('path');
+var fs = require('fs');
+
+var JFDI = require('./lib/JFDI');
+
 var println = console.log;
 var info = function() {};
+
+
+var rootPath = JFDI.getDataRoot();
+
+function handlePromptFailure() {
+    println('');
+    println('### Bummer! JFDI Path Setup Failed! ###');
+    println('');
+    println('An error occured. Retrying with root privileges may help.');
+    println('');
+}
+
+function checkPath() {
+    prompt.get(['path'], function (err, result) {
+        if (err) {
+            return handlePromptFailure(err);
+        }
+
+        var dir = result.path;
+
+        fs.stat(dir, function(err) {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    println('');
+                    println('No such directory exists.');
+                    println('Please create the directory first.');
+                    println('Then re-enter here.');
+                    println('');
+
+                    checkPath();
+
+                    return;
+                }
+
+                handlePromptFailure();
+            }
+
+            try {
+                fs.writeFileSync(path.join(__dirname, 'data/.root'), dir);
+
+                fs.writeFileSync(path.join(dir, '.today.timestamp'));
+                fs.writeFileSync(path.join(dir, 'done.txt'));
+                fs.writeFileSync(path.join(dir, 'today.txt'));
+                fs.writeFileSync(path.join(dir, 'tomorrow.txt'));
+            } catch(err2) {
+                handlePromptFailure();
+
+                return;
+            }
+
+            println('');
+            println('### Yay! ####');
+            println('');
+            println('    Ready to go! You can use JFDI now.');
+            println('');
+            println('    Visit');
+            println('');
+            println('       https://github.com/v0lkan/JFDI/blob/master/README.md');
+            println('');
+            println('    for usage examples.');
+            println('');
+        });
+    });
+}
+
+if (!rootPath) {
+    println('');
+    println('### Set Your JFDI for the First Time ###');
+    println('');
+    println('    It looks like this is the first time you are using JFDI.');
+    println('    Dont\'t worry, it\'s easy.');
+    println('');
+    println('    The only thing you need to configure is a folder to store');
+    println('    your JFDI data.');
+    println('');
+    println('    Where do you want to store your JFDI data?');
+    println('    Enter the full path ( like: /home/kenobi/Dropbox/JFDI/ ).');
+    println('');
+
+    prompt.start();
+
+    checkPath();
+
+    return;
+}
 
 function pad(index) {
     var str = '' + index;
