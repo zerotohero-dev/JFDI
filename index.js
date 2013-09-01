@@ -19,21 +19,24 @@ var program = require('commander');
 
 var JFDI = require('./lib/JFDI');
 
-var info = function() {};
+var debug = require('./lib/debug');
 var command = require('./lib/command');
 var parse = require('./lib/parsing').parseArguments;
 
 if (!JFDI.sanitize()) {return;}
 
 function init() {
-    info(process.argv);
+    debug.info(process.argv);
 
+    // Note that process.argv is passed by ref.
     parse(process.argv);
 
-    info(process.argv);
+    debug.info(process.argv);
 
     // TODO: auto replace it from package JSON
     program.version('0.0.1');
+
+    // Below is a brief summary of what the program does.
 
     program
     .option(
@@ -94,19 +97,27 @@ function init() {
     .command('today')
     .description('If no option given, list the goals for today.' +
         ' Otherwise executes the option within the context of today.')
-    .action(command.handleToday.bind(program));
+    .action(
+        command.handleToday.bind(program)
+    );
 
     program
     .command('tomorrow')
     .description('If no option given, list the goals for tomorrow.' +
         ' Otherwise executes the option within the context of tomorrow.')
-    .action(command.handleTomorrow.bind(program));
+    .action(
+        command.handleTomorrow.bind(program)
+    );
 
     program
     .command('all')
     .description('Lists today\'s and tomorrow\'s goals.')
-    .action(command.handleAll.bind(program));
+    .action(
+        command.handleAll.bind(program)
+    );
 
+    // This is the main entry point where the modified process.argv
+    // is evaluated.
     program.parse(process.argv);
 }
 
