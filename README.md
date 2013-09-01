@@ -23,3 +23,12 @@ This program in its very early development.
 
 Feel free to contribute.
 
+versioning:
+//TODO: this might need to be rephrased a little
+//TODO: look at semantic versioning document, and make the terminology more consistent, and link the document here too.
+The versions of the program are in the form main.major.minor.
+Each minor version change means that there is no obvious functionality difference
+Each major version change means a bugfix or an addition of functionality.
+Each main version change is a point in time that we can consider the product mature enough.
+There will not be breaking changes in minor versions, however there might be usage differences
+and breaking changes between main version.
