@@ -4,7 +4,7 @@
   "bin": {
     "jfdi": "index.js"
   },
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A Hacker's Way of Getting Stuff Done",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "vows": "~0.7.0",
-    "assert": "~0.4.9"
+    "assert": "~0.4.9",
+    "sinon": "~1.7.3"
   },
   "dependencies": {
     "commander": "~2.0.0",
