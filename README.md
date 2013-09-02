@@ -1,3 +1,7 @@
+<p>
+<img src=https://api.travis-ci.org/v0lkan/JFDI.png">
+</p>
+
 <pre>
                     ___         ___           ___
                    /\  \       /\  \         /\  \          ___
