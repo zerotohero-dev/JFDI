@@ -25,28 +25,16 @@ var JFDI = require('../lib/JFDI');
 var runtime = require('../lib/runtime');
 var command = require('../lib/command');
 
-var dummyBatch = {
-    'when doing nothing': {
-        topic: function() {
-            return 42;
-        },
-        'nothing happens': function(topic) {
-            assert.equal(topic, 42);
-        }
-    }
-};
+// To prevent overwriting data/.root.
+sinon.stub(fs, 'writeFileSync');
 
 // To prevent corrupting real data.
 JFDI.setDataRoot('');
-// To prevent overriting data/.root
-sinon.stub(fs, 'writeFileSync');
 
 vows.describe('jfdi.sanitize').addBatch({
     'when ./data/.root is empty': {
         topic: function() {
-            var sandbox, result, expectation;
-
-            sandbox = sinon.sandbox.create();
+            var result, expectation;
 
             // So that we won't update the real .root file.
             sinon.stub(prompt, 'start');
@@ -55,8 +43,6 @@ vows.describe('jfdi.sanitize').addBatch({
             result = JFDI.sanitize();
 
             expectation = !result && prompt.start.calledOnce;
-
-            sandbox.restore();
 
             return expectation;
         },
