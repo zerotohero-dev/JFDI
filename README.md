@@ -1,5 +1,5 @@
 ![JFDI Travis CI Build Status](https://api.travis-ci.org/v0lkan/JFDI.png)
-
+![JFDI NPM version](https://badge.fury.io/js/jfdi.png)](http://badge.fury.io/js/jfdi)
 
 <pre>
                     ___         ___           ___
