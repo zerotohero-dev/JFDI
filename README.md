@@ -1,5 +1,4 @@
-
-![JFDI Travis CI Build Status]https://api.travis-ci.org/v0lkan/JFDI.png)
+![JFDI Travis CI Build Status](https://api.travis-ci.org/v0lkan/JFDI.png)
 
 
 <pre>
