@@ -13,8 +13,17 @@
 
 'use strict';
 
-var vows = require('vows'),
-    assert = require('assert');
+/*jshint maxlen:180*/
+
+var vows = require('vows');
+var assert = require('assert');
+var sinon = require('sinon');
+//var fs = require('fs');
+var prompt = require('prompt');
+
+var JFDI = require('../lib/JFDI');
+var runtime = require('../lib/runtime');
+var command = require('../lib/command');
 
 var dummyBatch = {
     'when doing nothing': {
@@ -27,9 +36,158 @@ var dummyBatch = {
     }
 };
 
-vows.describe('jfdi.sanitize').addBatch(dummyBatch).export(module);
-vows.describe('jfdi foo').addBatch(dummyBatch).export(module);
-vows.describe('jfdi foo bar').addBatch(dummyBatch).export(module);
+// To prevent corrupting real data.
+JFDI.setDataRoot('');
+
+vows.describe('jfdi.sanitize').addBatch({
+    'when ./data/.root is empty': {
+        topic: function() {
+            var sandbox, result, expectation;
+
+            sandbox = sinon.sandbox.create();
+
+            // So that we won't update the real .root file.
+            sinon.stub(prompt, 'start');
+            sinon.stub(prompt, 'get');
+
+            result = JFDI.sanitize();
+
+            expectation = !result && prompt.start.calledOnce;
+
+            sandbox.restore();
+
+            return expectation;
+        },
+        'user should be prompted': function(expectation) {
+            assert.equal(expectation, true);
+        }
+    }
+}).export(module);
+
+vows.describe('jfdi foo').addBatch({
+    'Parsing': {
+        'when "jfdi foo" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--add' &&
+                    args[3] === 'foo' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+
+                return expectation;
+            },
+            'it should translate to "jfdi --add foo today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution': {
+        'when "jfdi foo" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                sinon.stub(command, 'handleToday');
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo'];
+
+                runtime.initialize();
+
+                runtime.execute();
+
+                expectation = command.handleToday.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.handleToday.restore();
+
+                return expectation;
+            },
+            'it should add a new task to today': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
+vows.describe('jfdi foo bar').addBatch({
+    'Parsing': {
+        'when "jfdi foo bar" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo', 'bar'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--add' &&
+                    args[3] === 'foo bar' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+
+                return expectation;
+            },
+            'it should translate to "jfdi --add foo today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution': {
+        'when "jfdi foo bar" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+                sinon.stub(command, 'handleToday');
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo', 'bar'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.handleToday.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.handleToday.restore();
+
+                return expectation;
+            },
+            'it should add a new task to today': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
 vows.describe('jfdi foo bar baz').addBatch(dummyBatch).export(module);
 vows.describe('jfdi -a "foo"').addBatch(dummyBatch).export(module);
 vows.describe('jfdi -add "foo"').addBatch(dummyBatch).export(module);
@@ -154,3 +312,24 @@ vows.describe('jfdi -prioritize today').addBatch(dummyBatch).export(module);
 vows.describe('jfdi -p tomorrow').addBatch(dummyBatch).export(module);
 vows.describe('jfdi -prioritize tomorrow').addBatch(dummyBatch).export(module);
 
+
+// If you define a new command or option, make sure you update this, too.
+// If a command is NOT a special command, then it means that it will be
+// implicitly called with `--add`.
+// i.e.
+//
+//      jfdi "Save the cheerleader; save the world!"
+//
+// will be implicityl converted to
+//
+//      jfdi --add "Save the cheerleader; save the world!"
+//
+// If the text is in this list, then this implicit conversion will not be done.
+// So
+//
+//      jfdi today
+//
+// will be
+//
+//      jfdi --list today // note that we don't add `--add` now.
+//
