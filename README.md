@@ -1,6 +1,6 @@
-<p>
-<img src=https://api.travis-ci.org/v0lkan/JFDI.png">
-</p>
+
+![JFDI Travis CI Build Status]https://api.travis-ci.org/v0lkan/JFDI.png)
+
 
 <pre>
                     ___         ___           ___
