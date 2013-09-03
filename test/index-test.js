@@ -938,15 +938,193 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
 
 /*----------------------------------------------------------------------------*/
 
-// foo tomorrow
+vows.describe('jfdi foo tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--add' &&
+                    args[3] === 'foo' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+
+                return expectation;
+            },
+            'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+                // TODO: rename handleAdditionWrongRealm
+                sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleAdditionIncorrectRealm.restore();
+
+                return expectation;
+            },
+            'it should warn user about the incorrect behavior': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// -a foo tomorrow
+vows.describe('jfdi -a foo tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -a foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '-a', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-a' &&
+                    args[3] === 'foo' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+
+                return expectation;
+            },
+            'it should translate to "jfdi -a \'foo\' tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -a foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', '-a', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleAdditionIncorrectRealm.restore();
+
+                return expectation;
+            },
+            'it should warn user about the incorrect behavior': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// -add foo tomorrow
+vows.describe('jfdi --add foo tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --add foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--add', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--add' &&
+                    args[3] === 'foo' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+
+                return expectation;
+            },
+            'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --add foo tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', '--add', 'foo', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleAdditionIncorrectRealm.restore();
+
+                return expectation;
+            },
+            'it should warn user about the incorrect behavior': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
