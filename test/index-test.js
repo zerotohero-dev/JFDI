@@ -55,7 +55,7 @@ vows.describe('jfdi.sanitize').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -85,7 +85,7 @@ vows.describe('jfdi foo').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -120,7 +120,7 @@ vows.describe('jfdi foo').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo bar').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo bar" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -150,7 +150,7 @@ vows.describe('jfdi foo bar').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo bar" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -183,7 +183,7 @@ vows.describe('jfdi foo bar').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo bar baz').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo bar baz" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -213,7 +213,7 @@ vows.describe('jfdi foo bar baz').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo bar" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -246,7 +246,7 @@ vows.describe('jfdi foo bar baz').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi -a foo').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi -a foo" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -276,7 +276,7 @@ vows.describe('jfdi -a foo').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi -a foo" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -309,7 +309,7 @@ vows.describe('jfdi -a foo').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi --add foo').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi --add foo" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -339,7 +339,7 @@ vows.describe('jfdi --add foo').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi -add foo" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -372,7 +372,7 @@ vows.describe('jfdi --add foo').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -402,7 +402,7 @@ vows.describe('jfdi foo today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -435,7 +435,7 @@ vows.describe('jfdi foo today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo bar today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo bar today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -465,7 +465,7 @@ vows.describe('jfdi foo bar today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -498,7 +498,7 @@ vows.describe('jfdi foo bar today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi foo bar baz today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi foo bar baz today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -528,7 +528,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi foo today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -561,7 +561,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi -a foo today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi -a foo today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -591,7 +591,7 @@ vows.describe('jfdi -a foo today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi -a foo today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -624,7 +624,7 @@ vows.describe('jfdi -a foo today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi -a foo bar today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi -a foo bar today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -654,7 +654,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi -a foo bar today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -687,7 +687,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi -a foo bar baz today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi -a foo bar baz today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -717,7 +717,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi -a foo bar baz today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -750,7 +750,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi --add foo today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi --add foo today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -780,7 +780,7 @@ vows.describe('jfdi --add foo today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi --add foo today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -813,7 +813,7 @@ vows.describe('jfdi --add foo today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi --add foo bar today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi --add foo bar today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -843,7 +843,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi --add foo bar today" is called': {
             topic: function() {
                 var oldArgs, expectation;
@@ -876,7 +876,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 vows.describe('jfdi --add foo bar bz today').addBatch({
-    'Parsing': {
+    'Parsing>>>': {
         'when "jfdi --add foo bar baz today" is called': {
             topic: function() {
                 var oldArgs, args, expectation;
@@ -906,7 +906,7 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
             }
         }
     },
-    'Execution': {
+    'Execution>>>': {
         'when "jfdi --add foo bar baz today" is called': {
             topic: function() {
                 var oldArgs, expectation;
