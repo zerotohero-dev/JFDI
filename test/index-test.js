@@ -1279,43 +1279,606 @@ vows.describe('jfdi 0').addBatch({
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi 0 today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '0', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleCompleteIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', '0', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleCompleteIncorrectRealm.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -x 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -x 0').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -x 0" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-x' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -x 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -x 0" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -x 0 today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -x 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -x 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-x' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -x 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -x 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -x 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -x 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -x 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-x' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -x 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -x 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleCompleteIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', '-x', '0', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleCompleteIncorrectRealm.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi --do 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'tomorrow'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 tomorrow" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleCompleteIncorrectRealm');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'tomorrow'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleCompleteIncorrectRealm.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi --do 0 today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi --do 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -d 0').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -d 0" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '-d', '0'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-d' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -d 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -d 0" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleDefer');
+
+                // Create the command.
+                process.argv = ['node', '.', '-d', '0'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDefer.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleDefer.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -d 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -d 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
 
-/*----------------------------------------------------------------------------*/
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
 
-// vows.describe('jfdi -d 0 today').addBatch(dummyBatch).export(module);
+                // Create the command.
+                process.argv = ['node', '.', '-d', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-d' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -d 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -d 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleDefer');
+
+                // Create the command.
+                process.argv = ['node', '.', '-d', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDefer.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleDefer.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
@@ -1324,10 +1887,137 @@ vows.describe('jfdi 0').addBatch({
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --defer 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --defer 0').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --defer 0" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--defer', '0'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--defer' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --defer 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --defer 0" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleDefer');
+
+                // Create the command.
+                process.argv = ['node', '.', '--defer', '0'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDefer.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleDefer.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi --defer 0 today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --defer 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --defer 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--defer', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--defer' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --defer 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --defer 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleDefer');
+
+                // Create the command.
+                process.argv = ['node', '.', '--defer', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDefer.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleDefer.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
@@ -1344,10 +2034,138 @@ vows.describe('jfdi 0').addBatch({
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -e 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --expedite 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
@@ -1356,78 +2174,1294 @@ vows.describe('jfdi 0').addBatch({
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --expedite 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum dolor').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum dolor').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum dolor today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum dolor today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi -f lorem ipsum dolor tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --find lorem ipsum dolor tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --do 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --do 0 today" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '--do', '0', 'today'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
