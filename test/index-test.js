@@ -20,16 +20,32 @@ var assert = require('assert');
 var sinon = require('sinon');
 var fs = require('fs');
 var prompt = require('prompt');
+var program = require('commander');
 
 var JFDI = require('../lib/JFDI');
 var runtime = require('../lib/runtime');
 var command = require('../lib/command');
 
+
 // To prevent overwriting data/.root.
 sinon.stub(fs, 'writeFileSync');
 
+// To prevent "resource not found " errors.
+sinon.stub(fs, 'readFileSync', function(path) {
+    return path;
+});
+
 // To prevent corrupting real data.
 JFDI.setDataRoot('');
+
+function resetProgramState() {
+    delete program.add;
+    delete program.find;
+    delete program.defer;
+    delete program.expedit;
+    delete program.prioritize;
+    delete program['do'];
+}
 
 vows.describe('jfdi.sanitize').addBatch({
     'when ./data/.root is empty': {
@@ -61,6 +77,7 @@ vows.describe('jfdi foo').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -77,6 +94,7 @@ vows.describe('jfdi foo').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -91,6 +109,7 @@ vows.describe('jfdi foo').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 sinon.stub(command, 'handleToday');
@@ -107,6 +126,7 @@ vows.describe('jfdi foo').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -126,6 +146,7 @@ vows.describe('jfdi foo bar').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -142,6 +163,7 @@ vows.describe('jfdi foo bar').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -156,6 +178,7 @@ vows.describe('jfdi foo bar').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -170,6 +193,7 @@ vows.describe('jfdi foo bar').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -189,6 +213,7 @@ vows.describe('jfdi foo bar baz').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -205,6 +230,7 @@ vows.describe('jfdi foo bar baz').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -219,6 +245,7 @@ vows.describe('jfdi foo bar baz').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -233,6 +260,7 @@ vows.describe('jfdi foo bar baz').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -252,6 +280,7 @@ vows.describe('jfdi -a foo').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -268,6 +297,7 @@ vows.describe('jfdi -a foo').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -282,6 +312,7 @@ vows.describe('jfdi -a foo').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -296,6 +327,7 @@ vows.describe('jfdi -a foo').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -315,6 +347,7 @@ vows.describe('jfdi --add foo').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -331,6 +364,7 @@ vows.describe('jfdi --add foo').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -345,6 +379,7 @@ vows.describe('jfdi --add foo').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -359,6 +394,7 @@ vows.describe('jfdi --add foo').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -378,6 +414,7 @@ vows.describe('jfdi foo today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -394,6 +431,7 @@ vows.describe('jfdi foo today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -408,6 +446,7 @@ vows.describe('jfdi foo today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -422,6 +461,7 @@ vows.describe('jfdi foo today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -441,6 +481,7 @@ vows.describe('jfdi foo bar today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -457,6 +498,7 @@ vows.describe('jfdi foo bar today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -471,6 +513,7 @@ vows.describe('jfdi foo bar today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -485,6 +528,7 @@ vows.describe('jfdi foo bar today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -504,6 +548,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -520,6 +565,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -534,6 +580,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -548,6 +595,7 @@ vows.describe('jfdi foo bar baz today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -567,6 +615,7 @@ vows.describe('jfdi -a foo today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -583,6 +632,7 @@ vows.describe('jfdi -a foo today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -597,6 +647,7 @@ vows.describe('jfdi -a foo today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -611,6 +662,7 @@ vows.describe('jfdi -a foo today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -630,6 +682,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -646,6 +699,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -660,6 +714,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -674,6 +729,7 @@ vows.describe('jfdi -a foo bar today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -693,6 +749,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -709,6 +766,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -723,6 +781,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -737,6 +796,7 @@ vows.describe('jfdi -a foo bar baz today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -756,6 +816,7 @@ vows.describe('jfdi --add foo today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -772,6 +833,7 @@ vows.describe('jfdi --add foo today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -786,6 +848,7 @@ vows.describe('jfdi --add foo today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -800,6 +863,7 @@ vows.describe('jfdi --add foo today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -819,6 +883,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -835,6 +900,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -849,6 +915,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -863,6 +930,7 @@ vows.describe('jfdi --add foo bar today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -882,6 +950,7 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -898,6 +967,7 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -912,6 +982,7 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command, 'handleToday');
 
@@ -926,6 +997,7 @@ vows.describe('jfdi --add foo bar bz today').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.handleToday.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -945,6 +1017,7 @@ vows.describe('jfdi foo tomorrow').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -961,6 +1034,7 @@ vows.describe('jfdi foo tomorrow').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -975,6 +1049,7 @@ vows.describe('jfdi foo tomorrow').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 // TODO: rename handleAdditionWrongRealm
                 sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
@@ -990,6 +1065,7 @@ vows.describe('jfdi foo tomorrow').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.privates.handleAdditionIncorrectRealm.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -1009,6 +1085,7 @@ vows.describe('jfdi -a foo tomorrow').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -1025,6 +1102,7 @@ vows.describe('jfdi -a foo tomorrow').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -1039,6 +1117,7 @@ vows.describe('jfdi -a foo tomorrow').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
 
@@ -1053,6 +1132,7 @@ vows.describe('jfdi -a foo tomorrow').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.privates.handleAdditionIncorrectRealm.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -1072,6 +1152,7 @@ vows.describe('jfdi --add foo tomorrow').addBatch({
                 var oldArgs, args, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
 
                 // Create the command.
@@ -1088,6 +1169,7 @@ vows.describe('jfdi --add foo tomorrow').addBatch({
 
                 // Teardown.
                 process.argv = oldArgs;
+                resetProgramState();
 
                 return expectation;
             },
@@ -1102,6 +1184,7 @@ vows.describe('jfdi --add foo tomorrow').addBatch({
                 var oldArgs, expectation;
 
                 // Setup.
+                resetProgramState();
                 oldArgs = process.argv;
                 sinon.stub(command.privates, 'handleAdditionIncorrectRealm');
 
@@ -1116,6 +1199,7 @@ vows.describe('jfdi --add foo tomorrow').addBatch({
                 // Teardown.
                 process.argv = oldArgs;
                 command.privates.handleAdditionIncorrectRealm.restore();
+                resetProgramState();
 
                 return expectation;
             },
@@ -1128,7 +1212,70 @@ vows.describe('jfdi --add foo tomorrow').addBatch({
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi 0').addBatch({
+    'Parsing>>>': {
+        'when "jfdi 0" is called': {
+            topic: function() {
+                var oldArgs, args, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+
+                // Create the command.
+                process.argv = ['node', '.', '0'];
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--do' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                process.argv = oldArgs;
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --do 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi 0" is called': {
+            topic: function() {
+                var oldArgs, expectation;
+
+                // Setup.
+                resetProgramState();
+                oldArgs = process.argv;
+                sinon.stub(command.privates, 'handleComplete');
+
+                // Create the command.
+                process.argv = ['node', '.', '0'];
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleComplete.calledOnce;
+
+                // Teardown.
+                process.argv = oldArgs;
+                command.privates.handleComplete.restore();
+                resetProgramState();
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
