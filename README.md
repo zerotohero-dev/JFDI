@@ -17,7 +17,7 @@ A Hacker's Way of Getting Stuff Done.
 
 How To:
 
-Read <http://blog.o2js.com/jfdi-a-hackers-way-to-get-stuff-done> for usage examples, and installation details.
+Read <http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done> for usage examples, and installation details.
 
 TODO:// add usage examples to this readme, too.
 
