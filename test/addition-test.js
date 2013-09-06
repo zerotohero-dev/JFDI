@@ -47,13 +47,10 @@ function setup(postSetup) {
     // To prevent overwriting data/.root.
     sinon.stub(fs, 'writeFileSync');
 
-    // To prevent "resource not found " errors.
+    // To prevent "resource not found" errors.
     sinon.stub(fs, 'readFileSync', function(path) {
         return path;
     });
-
-    // To prevent corrupting real data.
-    JFDI.setDataRoot('');
 
     if (postSetup) {
         postSetup();
