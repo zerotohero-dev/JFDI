@@ -25,7 +25,6 @@ var JFDI = require('../lib/JFDI');
 var runtime = require('../lib/runtime');
 var command = require('../lib/command');
 
-
 // To prevent overwriting data/.root.
 sinon.stub(fs, 'writeFileSync');
 
