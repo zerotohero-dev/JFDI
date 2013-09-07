@@ -41,9 +41,6 @@ function setup(postSetup) {
 
     resetProgramState();
 
-    // To prevent corrupting real data.
-    JFDI.setDataRoot('');
-
     // To prevent overwriting data/.root.
     sinon.stub(fs, 'writeFileSync');
 

@@ -41,16 +41,16 @@ function setup(postSetup) {
 
     resetState();
 
-    // To prevent corrupting real data.
-    JFDI.setDataRoot('');
-
     // To prevent overwriting data/.root.
     sinon.stub(fs, 'writeFileSync');
 
-    // To prevent "resource not found" errors.
+    // To prevent "resource not found " errors.
     sinon.stub(fs, 'readFileSync', function(path) {
         return path;
     });
+
+    // To prevent corrupting real data.
+    JFDI.setDataRoot('');
 
     if (postSetup) {
         postSetup();
@@ -80,7 +80,6 @@ vows.describe('jfdi foo').addBatch({
     'Parsing>>>': {
         'when "jfdi foo" is called': {
             topic: function() {
-                console.log(this.command);
                 var args, expectation;
 
                 setup();
