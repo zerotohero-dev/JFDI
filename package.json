@@ -4,7 +4,7 @@
   "bin": {
     "jfdi": "index.js"
   },
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A Hacker's Way of Getting Stuff Done",
   "main": "index.js",
   "scripts": {
