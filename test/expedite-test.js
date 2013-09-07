@@ -76,11 +76,183 @@ function getArgv(test) {
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -e 0').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -e 0').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -e 0" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-e' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                // Teardown.
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -e 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -e 0" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleExpedite');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                runtime.execute();
+
+                expectation = command.privates.handleExpedite.calledOnce;
+
+                // Teardown.
+                teardown(function() {command.privates.handleExpedite.restore();});
+
+                return expectation;
+            },
+            'it should expedite the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -e 0 today').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -e 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -e 0 today" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-e' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -e 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -e 0 today" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleSoonerIncorrectRealm');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                runtime.execute();
+
+                expectation = command.privates.handleSoonerIncorrectRealm.calledOnce;
+
+                // Teardown.
+                teardown(function() {command.privates.handleSoonerIncorrectRealm.restore();});
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
+/*----------------------------------------------------------------------------*/
+
+vows.describe('jfdi --expedite 0 today').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --expedite 0 today" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--expedite' &&
+                    args[3] === '0' &&
+                    args[4] === 'today' &&
+                    args.length === 5;
+
+                // Teardown.
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -e 0 today"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --expedite 0 today" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleSoonerIncorrectRealm');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                runtime.execute();
+
+                expectation = command.privates.handleSoonerIncorrectRealm.calledOnce;
+
+                // Teardown.
+                teardown(function() {command.privates.handleSoonerIncorrectRealm.restore();});
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
@@ -141,10 +313,6 @@ vows.describe('jfdi -e 0 tomorrow').addBatch({
         }
     }
 }).export(module);
-
-/*----------------------------------------------------------------------------*/
-
-// vows.describe('jfdi --expedite 0 today').addBatch(dummyBatch).export(module);
 
 /*----------------------------------------------------------------------------*/
 

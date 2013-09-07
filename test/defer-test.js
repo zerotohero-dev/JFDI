@@ -190,7 +190,117 @@ vows.describe('jfdi -d 0 today').addBatch({
 
 /*----------------------------------------------------------------------------*/
 
-// vows.describe('jfdi -d 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi -d 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi -d 0 tomorrow" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '-d' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi -d 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi -d 0 tomorrow" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleDeferIncorrectRealm');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDeferIncorrectRealm.calledOnce;
+
+                teardown(function() {command.privates.handleDeferIncorrectRealm.restore();});
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
+/*----------------------------------------------------------------------------*/
+
+vows.describe('jfdi --defer 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --defer 0 tomorrow" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--defer' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --defer 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --defer 0 tomorrow" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleDeferIncorrectRealm');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDeferIncorrectRealm.calledOnce;
+
+                teardown(function() {command.privates.handleDeferIncorrectRealm.restore();});
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
 
 /*----------------------------------------------------------------------------*/
 
