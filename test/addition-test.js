@@ -25,7 +25,7 @@ var JFDI = require('../lib/JFDI');
 var runtime = require('../lib/runtime');
 var command = require('../lib/command');
 
-function resetProgramState() {
+function resetState() {
     delete program.add;
     delete program.find;
     delete program.defer;
@@ -39,7 +39,7 @@ var oldArguments;
 function setup(postSetup) {
     oldArguments = process.argv;
 
-    resetProgramState();
+    resetState();
 
     // To prevent corrupting real data.
     JFDI.setDataRoot('');
@@ -70,7 +70,7 @@ function teardown(preTeardown) {
 
     process.argv = oldArguments;
 
-    resetProgramState();
+    resetState();
 }
 
 function getArgv(test) {

@@ -18,21 +18,59 @@
 var vows = require('vows');
 var assert = require('assert');
 var sinon = require('sinon');
-var fs = require('fs');
 var prompt = require('prompt');
+var fs = require('fs');
+var program = require('commander');
 
 var JFDI = require('../lib/JFDI');
 
-// To prevent overwriting data/.root.
-sinon.stub(fs, 'writeFileSync');
+function resetState() {
+    delete program.add;
+    delete program.find;
+    delete program.defer;
+    delete program.expedite;
+    delete program.prioritize;
+    delete program['do'];
+}
 
-// To prevent "resource not found " errors.
-sinon.stub(fs, 'readFileSync', function(path) {
-    return path;
-});
+var oldArguments;
 
-// To prevent corrupting real data.
-JFDI.setDataRoot('');
+function setup(postSetup) {
+    oldArguments = process.argv;
+
+    resetState();
+
+    // To prevent corrupting real data.
+    JFDI.setDataRoot('');
+
+    // To prevent overwriting data/.root.
+    sinon.stub(fs, 'writeFileSync');
+
+    // To prevent "resource not found " errors.
+    sinon.stub(fs, 'readFileSync', function(path) {
+        return path;
+    });
+
+    // To prevent corrupting real data.
+    JFDI.setDataRoot('');
+
+    if (postSetup) {
+        postSetup();
+    }
+}
+
+function teardown(preTeardown) {
+    if (preTeardown) {
+        preTeardown();
+    }
+
+    fs.writeFileSync.restore();
+    fs.readFileSync.restore();
+
+    process.argv = oldArguments;
+
+    resetState();
+}
 
 /*----------------------------------------------------------------------------*/
 
@@ -41,13 +79,21 @@ vows.describe('jfdi.sanitize').addBatch({
         topic: function() {
             var result, expectation;
 
-            // So that we won't update the real .root file.
-            sinon.stub(prompt, 'start');
-            sinon.stub(prompt, 'get');
+            setup(function() {
+
+                // So that we won't update the real .root file.
+                sinon.stub(prompt, 'start');
+                sinon.stub(prompt, 'get');
+            });
 
             result = JFDI.sanitize();
 
             expectation = !result && prompt.start.calledOnce;
+
+            teardown(function() {
+                prompt.start.restore();
+                prompt.get.restore();
+            });
 
             return expectation;
         },
@@ -56,9 +102,3 @@ vows.describe('jfdi.sanitize').addBatch({
         }
     }
 }).export(module);
-
-/*----------------------------------------------------------------------------*/
-
-// Global teardown.
-fs.writeFileSync.restore();
-fs.readFileSync.restore();
