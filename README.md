@@ -14,7 +14,7 @@
                                             \::/__/      \/__/
 </pre>
 
-# A Hacker's Way of Getting %#!% Done
+# A Hacker's Way of Getting $#!% Done
 
 ## Every Saga Has a Beginning
 
