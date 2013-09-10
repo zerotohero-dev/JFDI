@@ -1,5 +1,6 @@
 ![JFDI Travis CI Build Status](https://api.travis-ci.org/v0lkan/JFDI.png) &nbsp;
-![JFDI NPM version](https://badge.fury.io/js/jfdi.png)
+![JFDI NPM version](https://badge.fury.io/js/jfdi.png) &nbsp;
+![Dependency Info](https://david-dm.org/v0lkan/JFDI.png)
 <pre>
                     ___         ___           ___
                    /\  \       /\  \         /\  \          ___
