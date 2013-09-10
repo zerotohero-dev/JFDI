@@ -14,13 +14,13 @@
                                             \::/__/      \/__/
 </pre>
 
-# A Hacker's Way of Getting %#!% Done
+# A Hacker's Way of Getting $#!% Done
 
 ## Every Saga Has a Beginning
 
 It all started with
 [the **JFDI** Methodology](https://gist.github.com/v0lkan/2694911) and
-[the **JFDI**] Manifesto](https://gist.github.com/v0lkan/2731233)
+[the **JFDI** Manifesto](https://gist.github.com/v0lkan/2731233)
 
 > **JFDI** is a *command line interface* to help you focus what goals
 you can achieve **right now**.
