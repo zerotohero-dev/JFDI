@@ -518,4 +518,4 @@ See [LICENSE.md](LICENSE.md) for details.
 
 ## Contact Information
 
-**Project Owner**: *Volkan Özçelik* <volkan@o2js.com>.
+**Project Owner**:  [Volkan Özçelik](http://volkan.io/) <volkan@o2js.com>.
