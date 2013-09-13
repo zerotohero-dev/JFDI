@@ -6,6 +6,7 @@
 		- [Why Right Now?](#why-right-now)
 	- [Planning Is a Bummer](#planning-is-a-bummer)
 	- [It is Plain Text Files, Baby!](#it-is-plain-text-files-baby!)
+	- [When You Don't Have Access to `JFDI` CLI](#when-you-dont-have-access-to-jfdi-cli)
 	- [Supported Platforms](#supported-platforms)
 	- [Project Directory Structure](#project-directory-structure)
 	- [Where Can I Get Help?](#where-can-i-get-help)
