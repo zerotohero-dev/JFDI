@@ -242,6 +242,7 @@ and you are done.
 > **Tip**:
 >
 > You might need root privileges to use **JFDI**.
+> 
 > If the command examples given below do not work for you, replace
 > `jfdi` with `sudo jfdi`, and try them again.
 >
