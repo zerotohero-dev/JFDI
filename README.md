@@ -27,7 +27,7 @@
 	- [Things to Be Implemented](#things-to-be-implemented)
 	- [Versioning](#versioning)
 	- [How Do I Contribute?](#how-do-i-contribute)
-	- [I Have A Question...](#i-have-a-question)
+	- [I Have A Question](#i-have-a-question)
 	- [License](#license)
 	- [Contact Information](#contact-information)
 
