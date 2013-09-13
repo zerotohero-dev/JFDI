@@ -140,7 +140,7 @@ And once you are done, they will be syncronized everywhere.
 
 ## When You Don't Have Access to `jfdi` CLI
 
-Since those files are plain text files, you can use **any text editor**to modify them
+Since those files are plain text files, you can use **any text editor** to modify them
 even if you don't have access to `jfdi` command line interface
 
 > Since **JFDI** data files are plain text files, they are universally portable.
