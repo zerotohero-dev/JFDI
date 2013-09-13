@@ -48,7 +48,7 @@ Because, we geeks live in the terminal.
 
 Using something that is already
 open, and is most of the time in front of your eyes, will help you beat the
-inertia of launching a separate app, to manage your goals.
+inertia of launching a separate app, to manage your goals &ndash; Here's why:
 
 > Adding a **JFDI** goal is as simple as typing `jfdi save the world`. 
 >
