@@ -164,8 +164,9 @@ the files properly.
 
 ## Supported Platforms
 
-**JFDI** is being devloped to have as little dependencies as possible. You
-should be able to run it on **any platform that supports Node.JS**. It should
+**JFDI** does not have any platform-specific dependencies. 
+
+You should be able to run it on **any platform that supports Node.JS**. It should
 work properly in all major **Windows**, **Mac OSX**, and **Linux Platforms**.
 
 If you face any particular issue with your platform
