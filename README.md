@@ -108,34 +108,49 @@ moon. Your typical **runway** is something like&hellip;
 ## It is Plain Text Files, Baby!
 
 Do you know what is universally reachable, and modifiable, withouth needing
-to download special software? A plain text file. You can edit your text file
-on your Mac, on your PC, in your smart phone, in your tablet&hellip; Text files
-are damn fast to edit; **they do not distract you**.
+to download special software? 
 
-What **JFDI** does is similar. It maintains *plain text files* in a sync
-directory of your choice. So if you set your sync directory to something like
+> A plain text file. 
+
+You can edit your text file on your Mac, on your PC, in your smart phone, 
+in your tablet, on Mars, and on the mooon&hellip; 
+
+Text files are damn fast to edit; **they do not distract you**.
+
+What **JFDI** does is similar: 
+
+> **JFDI** maintains *plain text files* in a **sync** directory of your choice. 
+
+So if you set your **sync** directory to something like:
 
 `/home/procrastinator/Dropbox/JFDI/`
 
 (being /home/procrastinator/Dropbox/ your [Dropbox](http://dropbox.com/) folder)
 
-then you can edit these files wherever you want. You can sort your priorities
-even when you are offline. And once you are done, they will be syncronized
-everywhere.
-
-**JFDI** is a **command line interface** that maintains three text files:
+**JFDI** will put three text files to that folder:
 
 * **today.txt**,
 * **tomorrow.txt**,
 * and **done.txt**;
 
-and it gives you the liberty to modify them however you like.
+then you can edit these files wherever you want. 
 
-It will play nicely, as long as you remmember to keep each goal in a separate
-line.
+And once you are done, they will be syncronized everywhere.
 
-> So you can edit you goals even without using **JFDI**; and it it won't blow
-up anything.
+
+**JFDI** it gives you the liberty to modify your files however you like.
+
+It only has a single requirement:
+
+    Keep each goal in a separate line.
+
+It will play nicely, as long as you remmember to **keep each goal in its own line**.
+
+And as long as you follow this simple rule, you can edit your text files in
+whichever text editor you like, and when you run `jfdi` again, it will easily catch up.
+
+> So you can edit you goals even without using **JFDI**; 
+and without blowing up anything.
 
 ## Supported Platforms
 
