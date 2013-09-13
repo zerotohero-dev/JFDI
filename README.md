@@ -504,7 +504,7 @@ Contribution is simple. Just follow these steps:
 4. Push to the branch (`git push origin my-awesome-feature`);
 5. Create a new pull requests.
 
-### I Have A Question...
+### I Have A Question
 
 [File and issue](https://github.com/v0lkan/JFDI/issues/new) or
 [Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
