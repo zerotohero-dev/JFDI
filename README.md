@@ -42,7 +42,7 @@ It all started with
 > In a nutshell, **JFDI** is a *command line interface* to help you focus what goals
 you can achieve **right now**.
 
-## Why A  Interface?
+## Why A Command Line Interface?
 
 Because, we geeks live in the terminal. 
 
