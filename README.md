@@ -60,9 +60,15 @@ inertia of launching a separate app, to manage your goals.
 > * render a pretty UI&hellip;
 >
 > If after all that hassle, you will still need to click an "add task"
-> button, than it's **too much work already**.
+> button, just to add a simple gaol, than it's **too much work already**.
 >
-> Here is how you do it with **JFDI**:
+
+And when it is **too much work**, your subconscious will resist to
+use that app. That's why there are **hundreds** of **TODO** applications
+out there; and that's why the majority of people are not satisfied with
+their **Task Management Software**.
+
+> Now compare how you **JFDI**, instead:
 >
 >     Type your goal, hit _enter_ and bang!* it's there.
 >
