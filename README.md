@@ -1,18 +1,34 @@
-![JFDI Travis CI Build Status](https://api.travis-ci.org/v0lkan/JFDI.png) &nbsp;
-![JFDI NPM version](https://badge.fury.io/js/jfdi.png) &nbsp;
-![Dependency Info](https://david-dm.org/v0lkan/JFDI.png)
-<pre>
-                    ___         ___           ___
-                   /\  \       /\  \         /\  \          ___
-                   \:\  \     /::\  \       /::\  \        /\  \
-               ___ /::\__\   /:/\:\  \     /:/\:\  \       \:\  \
-              /\  /:/\/__/  /::\~\:\  \   /:/  \:\__\      /::\__\
-              \:\/:/  /    /:/\:\ \:\__\ /:/__/ \:|__|  __/:/\/__/
-               \::/  /     \/__\:\ \/__/ \:\  \ /:/  / /\/:/  /
-                \/__/           \:\__\    \:\  /:/  /  \::/__/
-                                 \/__/     \:\/:/  /    \:\__\
-                                            \::/__/      \/__/
-</pre>
+**Table of Contents** 
+
+- [A Hacker's Way of Getting $#!% Done](#a-hacker's-way-of-getting-$#!%-done)
+	- [Every Saga Has a Beginning](#every-saga-has-a-beginning)
+	- [Why A Command Line Interface?](#why-a-command-line-interface)
+		- [Why Right Now?](#why-right-now)
+	- [Planning Is a Bummer](#planning-is-a-bummer)
+	- [It is Plain Text Files, Baby!](#it-is-plain-text-files-baby!)
+	- [Supported Platforms](#supported-platforms)
+	- [Project Directory Structure](#project-directory-structure)
+	- [Where Can I Get Help?](#where-can-i-get-help)
+	- [Where is the Documentation?](#where-is-the-documentation)
+	- [How Do Setup **JFDI**?](#how-do-setup-jfdi)
+		- [Setup for Linux / Mac](#setup-for-linux--mac)
+		- [Setup for Windows](#setup-for-windows)
+	- [Configuration](#configuration)
+	- [Usage](#usage)
+		- [Displaying Help](#displaying-help)
+		- [Adding a Goal](#adding-a-goal)
+		- [Listing Goals](#listing-goals)
+		- [Deferring a Goal](#deferring-a-goal)
+		- [Listing Deferred Goals](#listing-deferred-goals)
+		- [Moving a Goal Back to Today's Queue](#moving-a-goal-back-to-today's-queue)
+		- [Marking a Goal as Done](#marking-a-goal-as-done)
+		- [Searching for Goals](#searching-for-goals)
+		- [Things to Be Implemented](#things-to-be-implemented)
+		- [Versioning](#versioning)
+		- [How Do I Contribute?](#how-do-i-contribute)
+		- [I Have A Question...](#i-have-a-question)
+	- [License](#license)
+	- [Contact Information](#contact-information)
 
 # A Hacker's Way of Getting $#!% Done
 
@@ -451,7 +467,7 @@ Contribution is simple. Just follow these steps:
 **JFDI** is distributed under the **MIT** license.
 You can play with it however you like.
 
-See <LICENSE.md> for details.
+See [LICENSE.md](LICENSE.md) for details.
 
 ## Contact Information
 
