@@ -53,11 +53,11 @@ inertia of launching a separate app, to manage your goals.
 >
 > You don't have to wait for&hellip;
 > 
-> * your shiny dandy GTD desktop app to launch; 
-> * index its tasks; 
-> * connect to the Internet; 
-> * sync recent data; 
-> * render a pretty UI. 
+> * your shiny dandy GTD desktop app to launch&hellip; 
+> * index its tasks&hellip; 
+> * connect to the Internet&hellip; 
+> * sync recent data&hellip; 
+> * render a pretty UI&hellip;
 >
 > If after all that hassle, you will still need to click an "add task"
 > button, than it's **too much work already**.
