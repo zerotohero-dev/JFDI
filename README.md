@@ -99,18 +99,11 @@ moon. Your typical **runway** is something like&hellip;
 * Remember the milk.
 * Save the world.
 
-Why torture your brain by setting *due dates* weeks from now
-to those simple tasks?! Just bump it to tomorrow, and **JFDI** what you can do
-**right now**.
-
-> Every day, your tomorrow goals will be carriead over to the bottom of your
-**today** queue; and you will deal with themm when when their time comes.
-If a goal will neither be done today, nor in a foreseeable future you can move
-it to a **later** queue and **JFDI** won't bother you until you have time for
-that goal.
-
-* *TODO://* the above feature is not implemented yet; it is in our **JFDI**
-queue.
+> Why torture your brain by setting *due dates* weeks from now
+> to those simple tasks?! 
+>
+> **JFDI** what you can do **right now**, and *bump* the rest to
+> **tomorrow**.
 
 ## It is Plain Text Files, Baby!
 
