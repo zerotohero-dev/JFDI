@@ -71,7 +71,7 @@ that goal.
 * *TODO://* the above feature is not implemented yet; it is in our **JFDI**
 queue.
 
-## It is Plain Text Files, Baby
+## It is Plain Text Files, Baby!
 
 Do you know what is universally reachable, and modifiable, withouth needing
 to download special software? A plain text file. You can edit your text file
@@ -103,7 +103,55 @@ line.
 > So you can edit you goals even without using **JFDI**; and it it won't blow
 up anything.
 
-## Setup
+## Supported Platforms
+
+**JFDI** is being devloped to have as little dependencies as possible. You
+should be able to run it on **any platform that supports Node.JS**. It should
+work properly in all major **Windows**, **Mac OSX**, and **Linux Platforms**.
+
+If you face any particular issue with your platform
+[file an issue](https://github.com/v0lkan/JFDI/issues/new).
+
+## Project Directory Structure
+
+The directory structure of the project is as follows:
+
+* **test**: Unit tests.
+* **lib**: Helper modules.
+* **data**: Configuration folder (*do not touch*).
+* *index.js*: The entry point of the program.
+* *README.md*: This file you are looking at.
+* *CHANGELOG.md*: Things done so far.
+* *LICENSE.md*: Boring copyright stuff.
+* *package.json*: npm package information.
+
+## Where Can I Get Help?
+
+Here a the places you can get help:
+
+* If you are experiencing a problem, or if you have found a bug, or if you want
+some cool sh\*t to be implemented
+[you can file an issue](https://github.com/v0lkan/JFDI/issues/new).
+* If you want to figure out how a specific command works,
+If you want to figure out how a function works, this README will be helpful,
+and you can always [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
+
+## Where is the Documentation?
+
+Currently the only documentation is this **README**.
+
+> You can also get command line help if you type `jfdi -h` or
+`jfdi --help` in the console.
+
+In addition to this **README** file, you can also read
+[this o2js.com blog post](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done)
+for usage examples, and installation details.
+
+> **If you write rewiews in your blog,
+[send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com) and it will be
+added to this **README** ASAP.
+
+## How Do Setup **JFDI**?
 
 ### Setup for Linux / Mac
 
@@ -113,7 +161,7 @@ You should have [Node.JS](http://nodejs.org/) installed, first.
 
 Once you have **Node.JS** installed, just run:
 
-    sudo npm install -g jfdi
+    [root@myserver:~]# sudo npm install -g jfdi
 
 and you will have **JFDI** installed globally.
 
@@ -121,7 +169,7 @@ and you will have **JFDI** installed globally.
 
 It is similar to Linux setup. After having installed **Node.JS**, just run.
 
-    npm install -g jfdi
+    [root@myserver:~]# npm install -g jfdi
 
 and you are done.
 
@@ -142,7 +190,7 @@ and you are done.
 
 To configure your **JFDI**, just type `jfdi` to the terminal.
 
-    $: jfdi
+    [root@myserver:~]# jfdi
 
 And you will get a prompt similar to this:
 
@@ -178,7 +226,7 @@ and then press enter. You will get this notification upon success:
 You can further verify everything is set up by checking your **JFDI** data
 directory:
 
-    root@localhost:~/PROJECTS/JFDI# ls /root/Dropbox/JFDIExample/ -al
+    [root@myserver:~]#  ls /root/Dropbox/JFDIExample/ -al
     total 8
     drwxr-xr-x  2 root root 4096 Sep 10 17:22 .
     drwx------ 11 root root 4096 Sep 10 13:50 ..
@@ -189,7 +237,7 @@ directory:
 If everything is set up correctly, once you run `jfdi` once more, you will
 get this message:
 
-    $: jfdi
+    [root@myserver:~]#  jfdi
 
     ### JFDI List For Today ###
 
@@ -206,21 +254,21 @@ Which means that you are all set! Congratulations!
 
 ### Displaying Help
 
-    $: jfdi -h
+    [root@myserver:~]# jfdi -h
 
 ### Adding a Goal
 
 Use
 
-    $: jfdi Save the cheerleader, save the world.
+    [root@myserver:~]# jfdi Save the cheerleader, save the world.
 
 Or you can use quotes if you have special characters in your goal:
 
-    $: jfdi "Save the cheerleader, (save the world)."
+    [root@myserver:~]# jfdi "Save the cheerleader, (save the world)."
 
 Here is a sample response:
 
-    $: jfdi Save the cheerleader, save the world.
+    [root@myserver:~]# jfdi Save the cheerleader, save the world.
 
 Will output the updated goals list.
 
@@ -232,7 +280,7 @@ Will output the updated goals list.
 
 Just type `jfdi`.
 
-    $: jfdi
+    [root@myserver:~]# jfdi
 
 will output:
 
@@ -250,7 +298,7 @@ Use `jfdi -d <goal id>`.
 
 For the above list
 
-    $: jfdi -d 1
+    [root@myserver:~]# jfdi -d 1
 
 Will output:
 
@@ -267,7 +315,7 @@ Use `jfdi tomorrow`.
 
 For the above case, using
 
-    $: jfdi tomorrow
+    [root@myserver:~]# jfdi tomorrow
 
 will output:
 
@@ -281,7 +329,7 @@ Use `jfdi -e <id>`.
 
 For the above **tomorrow** queue, using
 
-    $: jfdi -e 0
+    [root@myserver:~]# jfdi -e 0
 
 will output:
 
@@ -300,7 +348,7 @@ It's as easy as `jfdi <id>`.
 
 For the above example, using
 
-    $: jfdi 1
+    [root@myserver:~]# jfdi 1
 
 will output
 
@@ -318,11 +366,11 @@ Now you know kung fu!
 
 For the above example
 
-    $: jfdi -f milk
+    [root@myserver:~]# jfdi -f milk
 
 or
 
-    $: jfdi -f "milk"
+    [root@myserver:~]# jfdi -f "milk"
 
 will output:
 
@@ -332,7 +380,7 @@ will output:
 
 And
 
-    $: jfdi -f ponies tomorrow
+    [root@myserver:~]# jfdi -f ponies tomorrow
 
 will output:
 
@@ -357,39 +405,54 @@ on the available commands that you can use.
 * Automatic goal carry over from tomorrow.txt to today.txt at midnight.
 * [file an issue if you want more stuff](https://github.com/v0lkan/JFDI/issues/new)
 
-### Other Links
+### Versioning
 
-* You can also read
-[this o2js.com blog post](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done) for usage examples, and installation details.
+Each functional change in **JFDI** code increments the version number.
 
---------------------------------------------------------------------------------
+The version of the project is maintained at `package.json`; and it has
+`MAJOR.MINOR.PATCH` format.
 
-**Below is highly draft:**
+* **MAJOR** version changes are breaking, incompatible API changes.
+* **MINOR** version changes are **enhancements** and **new functionality**
+that have been added in a non-breaking, backwards-compatible manner.
+* **PATCH** version changes are non-breaking, backwards-compatibile
+**bug fixes**.
 
+With the following exception:
 
+    Although the maintainers of this codebase will try to the best abilities
+    not to introduce breaking changes, any version less than **1.0.0**
+    are exempt from the above rules, and may introduce breaking changes at
+    any time.
 
-### Contribute
+Each major version of **JFDI** will be maintained as tagged snapshots for
+each version.
 
-This program in its very early development.
+### How Do I Contribute?
 
-Feel free to contribute.
+**JFDI** is in active development, and any contribution is highly appreciated.
 
-### Other
+Contribution is simple. Just follow these steps:
 
-versioning:
+1. Fork this repository;
+2. Switch to the **develop** branch (`git checkout develop`);
+2. Create a feature branch (`git checkout -b my-awesome-feature`);
+3. Commit your changes (`git commit -am 'Added a greate feature.');
+4. Push to the branch (`git push origin my-awesome-feature`);
+5. Create a new pull requests.
 
-//TODO: this might need to be rephrased a little
+### I Have A Question...
 
-//TODO: look at semantic versioning document, and make the terminology more consistent, and link the document here too.
+[File and issue](https://github.com/v0lkan/JFDI/issues/new) or
+[Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
 
-The versions of the program are in the form main.major.minor.
+## License
 
-Each minor version change means that there is no obvious functionality difference
+**JFDI** is distributed under the **MIT** license.
+You can play with it however you like.
 
-Each major version change means a bugfix or an addition of functionality.
+See <LICENSE.md> for details.
 
-Each main version change is a point in time that we can consider the product mature enough.
+## Contact Information
 
-There will not be breaking changes in minor versions, however there might be usage differences
-
-and breaking changes between main version.
+**Project Owner**: *Volkan Özçelik* <volkan@o2js.com>.
