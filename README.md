@@ -11,7 +11,7 @@
 	- [Project Directory Structure](#project-directory-structure)
 	- [Where Can I Get Help?](#where-can-i-get-help)
 	- [Where is the Documentation?](#where-is-the-documentation)
-	- [How Do Setup **JFDI**?](#how-do-setup-jfdi)
+	- [How Do I Setup **JFDI**?](#how-do-setup-jfdi)
 		- [Setup for Linux / Mac](#setup-for-linux--mac)
 		- [Setup for Windows](#setup-for-windows)
 	- [Configuration](#configuration)
