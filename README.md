@@ -162,9 +162,6 @@ And as long as you follow this simple rule, you can edit your text files in
 whichever text editor you like, and when you run `jfdi` again, it will catch up and parse
 the files properly.
 
-> So you can edit you goals even without using **JFDI**; 
-and without blowing up anything.
-
 ## Supported Platforms
 
 **JFDI** is being devloped to have as little dependencies as possible. You
