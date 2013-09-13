@@ -223,7 +223,7 @@ You should have [Node.JS](http://nodejs.org/) installed, first.
 
 Once you have **Node.JS** installed, just run:
 
-    [root@myserver:~]# sudo npm install -g jfdi
+    [root@john.doe:~]# sudo npm install -g jfdi
 
 and you will have **JFDI** installed globally.
 
@@ -231,7 +231,7 @@ and you will have **JFDI** installed globally.
 
 It is similar to Linux setup. After having installed **Node.JS**, just run.
 
-    [root@myserver:~]# npm install -g jfdi
+    [root@john.doe:~]# npm install -g jfdi
 
 and you are done.
 
@@ -253,7 +253,7 @@ and you are done.
 
 To configure your **JFDI**, just type `jfdi` to the terminal.
 
-    [root@myserver:~]# jfdi
+    [root@john.doe:~]# jfdi
 
 And you will get a prompt similar to this:
 
@@ -289,7 +289,7 @@ and then press enter. You will get this notification upon success:
 You can further verify everything is set up by checking your **JFDI** data
 directory:
 
-    [root@myserver:~]#  ls /root/Dropbox/JFDIExample/ -al
+    [root@john.doe:~]#  ls /root/Dropbox/JFDIExample/ -al
     total 8
     drwxr-xr-x  2 root root 4096 Sep 10 17:22 .
     drwx------ 11 root root 4096 Sep 10 13:50 ..
@@ -300,7 +300,7 @@ directory:
 If everything is set up correctly, once you run `jfdi` once more, you will
 get this message:
 
-    [root@myserver:~]# jfdi
+    [root@john.doe:~]# jfdi
 
     ### JFDI List For Today ###
 
@@ -317,21 +317,21 @@ Which means that you are all set! Congratulations!
 
 ### Displaying Help
 
-    [root@myserver:~]# jfdi -h
+    [root@john.doe:~]# jfdi -h
 
 ### Adding a Goal
 
 Use
 
-    [root@myserver:~]# jfdi Save the cheerleader, save the world.
+    [root@john.doe:~]# jfdi Save the cheerleader, save the world.
 
 Or you can use quotes if you have special characters in your goal:
 
-    [root@myserver:~]# jfdi "Save the cheerleader, (save the world)."
+    [root@john.doe:~]# jfdi "Save the cheerleader, (save the world)."
 
 Here is a sample response:
 
-    [root@myserver:~]# jfdi Save the cheerleader, save the world.
+    [root@john.doe:~]# jfdi Save the cheerleader, save the world.
 
 Will output the updated goals list.
 
@@ -343,7 +343,7 @@ Will output the updated goals list.
 
 Just type `jfdi`.
 
-    [root@myserver:~]# jfdi
+    [root@john.doe:~]# jfdi
 
 will output:
 
@@ -361,7 +361,7 @@ Use `jfdi -d <goal id>`.
 
 For the above list
 
-    [root@myserver:~]# jfdi -d 1
+    [root@john.doe:~]# jfdi -d 1
 
 Will output:
 
@@ -378,7 +378,7 @@ Use `jfdi tomorrow`.
 
 For the above case, using
 
-    [root@myserver:~]# jfdi tomorrow
+    [root@john.doe:~]# jfdi tomorrow
 
 will output:
 
@@ -392,7 +392,7 @@ Use `jfdi -e <id>`.
 
 For the above **tomorrow** queue, using
 
-    [root@myserver:~]# jfdi -e 0
+    [root@john.doe:~]# jfdi -e 0
 
 will output:
 
@@ -411,7 +411,7 @@ It's as easy as `jfdi <id>`.
 
 For the above example, using
 
-    [root@myserver:~]# jfdi 1
+    [root@john.doe:~]# jfdi 1
 
 will output
 
@@ -429,11 +429,11 @@ Now you know kung fu!
 
 For the above example
 
-    [root@myserver:~]# jfdi -f milk
+    [root@john.doe:~]# jfdi -f milk
 
 or
 
-    [root@myserver:~]# jfdi -f "milk"
+    [root@john.doe:~]# jfdi -f "milk"
 
 will output:
 
@@ -443,7 +443,7 @@ will output:
 
 And
 
-    [root@myserver:~]# jfdi -f ponies tomorrow
+    [root@john.doe:~]# jfdi -f ponies tomorrow
 
 will output:
 
