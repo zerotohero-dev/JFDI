@@ -58,8 +58,10 @@ You don't have to wait for your shiny dandy GTD desktop app to launch;
 
 No process can be less interruptive, and faster than this!
 
-The main aim of the application is to help you **what need to be get done
-today**. So unlike other productivity <stike>pron</stike> apps, in **JFDI**
+The main aim of the application is to help you 
+**what need to be get done today**. 
+
+So unlike other productivity <stike>pr\*n</stike> apps, in **JFDI**
 you will not find dates, schedules, reminders, labels&hellip; to distract
 yo away.
 
