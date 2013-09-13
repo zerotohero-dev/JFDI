@@ -207,11 +207,13 @@ In addition to this **README** file, you can also read
 [this o2js.com blog post](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done)
 for usage examples, and installation details.
 
-> If you write rewiews in your blog,
+...
+
+>If you write rewiews in your blog,
 [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com) and it will be
 added to this **README** ASAP.
 
-## How Do Setup **JFDI**?
+## How Do I Setup **JFDI**?
 
 ### Setup for Linux / Mac
 
