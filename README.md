@@ -50,11 +50,23 @@ open, and is most of the time in front of your eyes, will help you beat the
 inertia of launching a separate app, to manage your goals.
 
 > Adding a **JFDI** goal is as simple as typing `jfdi save the world`. 
-You don't have to wait for your shiny dandy GTD desktop app to launch; 
-> index its tasks; connect to the Internet; sync recent data; render 
-> a pretty UI; and then wait for you to click the "add task" button.
 >
-> You just type your goal, hit **enter** and **bang!** it's there.
+> You don't have to wait for&hellip;
+> 
+> * your shiny dandy GTD desktop app to launch; 
+> * index its tasks; 
+> * connect to the Internet; 
+> * sync recent data; 
+> * render a pretty UI. 
+>
+> If after all that hassle, you will still need to click an "add task"
+> button, than it's **too much work already**.
+>
+> Here is how you do it with **JFDI**:
+>
+>     Type your goal, hit _enter_ and bang!* it's there.
+>
+> \* *Yes, this does make a "bang!" sound effect in your mind ;).*
 
 No process can be less interruptive, and faster than this!
 
