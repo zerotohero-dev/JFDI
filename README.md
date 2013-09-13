@@ -298,7 +298,7 @@ directory:
 If everything is set up correctly, once you run `jfdi` once more, you will
 get this message:
 
-    [root@myserver:~]#  jfdi
+    [root@myserver:~]# jfdi
 
     ### JFDI List For Today ###
 
