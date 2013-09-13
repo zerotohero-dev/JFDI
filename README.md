@@ -88,7 +88,7 @@ yo away.
 
 ### Why Right Now?
 
-Because it's f\*cking "**JFDI**" !
+Because it's f\*cking " **JFDI** " !
 
 ## Planning Is a Bummer
 
