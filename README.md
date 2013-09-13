@@ -43,14 +43,16 @@ you can achieve **right now**.
 
 ## Why A Command Line Interface?
 
-Because, we geeks live in the terminal. And using something that is already
+Because, we geeks live in the terminal. 
+
+Using something that is already
 open, and is most of the time in front of your eyes, will help you beat the
 inertia of launching a separate app, to manage your goals.
 
-> Adding a **JFDI** goal is as simple as `jfdi save the world`. You don't have
-> to wait for your shiny dandy GTD desktop app to launch; index its tasks;
-> connect to the Internet; sync recent data; render a pretty UI; and then
-> wait for you to click the "add task" button.
+> Adding a **JFDI** goal is as simple as typing `jfdi save the world`. 
+You don't have to wait for your shiny dandy GTD desktop app to launch; 
+> index its tasks; connect to the Internet; sync recent data; render 
+> a pretty UI; and then wait for you to click the "add task" button.
 >
 > You just type your goal, hit **enter** and **bang!** it's there.
 
