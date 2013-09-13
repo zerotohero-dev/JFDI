@@ -289,7 +289,7 @@ and then press enter. You will get this notification upon success:
 You can further verify everything is set up by checking your **JFDI** data
 directory:
 
-    [root@john.doe:~]#  ls /root/Dropbox/JFDIExample/ -al
+    [root@john.doe:~]# ls /root/Dropbox/JFDIExample/ -al
     total 8
     drwxr-xr-x  2 root root 4096 Sep 10 17:22 .
     drwx------ 11 root root 4096 Sep 10 13:50 ..
