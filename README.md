@@ -137,6 +137,13 @@ then you can edit these files wherever you want.
 
 And once you are done, they will be syncronized everywhere.
 
+## When You Don't Have Access to `jfdi` CLI
+
+Since those files are plain text files, you can use a text editor to modify them
+even if you don't have access to `jfdi` command line interface
+(for instance you can use an editor like [textastic](http://www.textasticapp.com/) to
+edit your goal list on your smart phone or tablet).
+
 **JFDI** gives you the liberty to modify your files however you like.
 
 It only has a single requirement:
@@ -146,7 +153,8 @@ It only has a single requirement:
 It will play nicely, as long as you remmember to **keep each goal in its own line**.
 
 And as long as you follow this simple rule, you can edit your text files in
-whichever text editor you like, and when you run `jfdi` again, it will easily catch up.
+whichever text editor you like, and when you run `jfdi` again, it will catch up and parse
+the files properly.
 
 > So you can edit you goals even without using **JFDI**; 
 and without blowing up anything.
