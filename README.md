@@ -79,8 +79,8 @@ their "*task management software*".
 
 No process can be less interruptive, and faster than this!
 
-The main aim of the application is to help you 
-**what need to be get done today**. 
+The main aim of the application is to help you accomplish
+**what need to be get done today**, with as little distraction as possible. 
 
 So unlike other productivity <stike>pr\*n</stike> apps, in **JFDI**
 you will not find dates, schedules, reminders, labels&hellip; to distract
