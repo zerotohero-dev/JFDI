@@ -93,7 +93,7 @@ Because it's f\*cking " **JFDI** " !
 ## Planning Is a Bummer
 
 Admit it, most of the time you don't plan launching manless spaceships to the
-moon. Your typical is something like
+moon. Your typical **runway** is something like&hellip;
 
 * Fix bug id UNP9959: Unicorns and ponies should live together.
 * Remember the milk.
