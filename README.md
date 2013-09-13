@@ -64,9 +64,12 @@ inertia of launching a separate app, to manage your goals.
 >
 
 And when it is **too much work**, your subconscious will resist to
-use that app. That's why there are **hundreds** of **TODO** applications
-out there; and that's why the majority of people are not satisfied with
-their **Task Management Software**.
+use that app. 
+
+* That's why there are **hundreds** of **TODO** applications
+out there; 
+* And that's why the majority of people are not satisfied with
+their "*task management software*".
 
 > Now compare how you **JFDI**, instead:
 >
