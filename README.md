@@ -24,10 +24,10 @@
 		- [Moving a Goal Back to Today's Queue](#moving-a-goal-back-to-today's-queue)
 		- [Marking a Goal as Done](#marking-a-goal-as-done)
 		- [Searching for Goals](#searching-for-goals)
-		- [Things to Be Implemented](#things-to-be-implemented)
-		- [Versioning](#versioning)
-		- [How Do I Contribute?](#how-do-i-contribute)
-		- [I Have A Question...](#i-have-a-question)
+	- [Things to Be Implemented](#things-to-be-implemented)
+	- [Versioning](#versioning)
+	- [How Do I Contribute?](#how-do-i-contribute)
+	- [I Have A Question...](#i-have-a-question)
 	- [License](#license)
 	- [Contact Information](#contact-information)
 
@@ -460,15 +460,14 @@ aliases to the above commands, so, for example, instead of using `jfdi -e <id>`
 you can use `jfdi --expedite <id>`, too. Type `jfdi --help` for more information
 on the available commands that you can use.
 
-### Things to Be Implemented
+## Things to Be Implemented
 
 * Listing "done" Goals
 * Undoing a "done" Goal
 * Prioritizing Goals
-* Automatic goal carry over from tomorrow.txt to today.txt at midnight.
 * [file an issue if you want more stuff](https://github.com/v0lkan/JFDI/issues/new)
 
-### Versioning
+## Versioning
 
 Each functional change in **JFDI** code increments the version number.
 
@@ -504,7 +503,7 @@ Contribution is simple. Just follow these steps:
 4. Push to the branch (`git push origin my-awesome-feature`);
 5. Create a new pull requests.
 
-### I Have A Question
+## I Have A Question
 
 [File and issue](https://github.com/v0lkan/JFDI/issues/new) or
 [Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
