@@ -42,7 +42,7 @@ It all started with
 > In a nutshell, **JFDI** is a *command line interface* to help you focus what goals
 you can achieve **right now**.
 
-## Why A Command Line Interface?
+## Why A  Interface?
 
 Because, we geeks live in the terminal. 
 
@@ -141,7 +141,7 @@ And once you are done, they will be syncronized everywhere.
 ## When You Don't Have Access to `jfdi` CLI
 
 Since those files are plain text files, you can use **any text editor** to modify them
-even if you don't have access to `jfdi` command line interface
+even if you don't have access to `jfdi` command line interface.
 
 > Since **JFDI** data files are plain text files, they are universally portable.
 >
