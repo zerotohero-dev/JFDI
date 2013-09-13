@@ -140,10 +140,15 @@ And once you are done, they will be syncronized everywhere.
 
 ## When You Don't Have Access to `jfdi` CLI
 
-Since those files are plain text files, you can use a text editor to modify them
+Since those files are plain text files, you can use **any text editor**to modify them
 even if you don't have access to `jfdi` command line interface
-(for instance you can use an editor like [textastic](http://www.textasticapp.com/) to
-edit your goal list on your smart phone or tablet).
+
+> Since **JFDI** data files are plain text files, they are universally portable.
+>
+> For instance you can use an editor like [textastic](http://www.textasticapp.com/) 
+> to edit your goal list on your smart phone or tablet), and then when you are
+> back in front of your computer, you can use `jfdi` to modify 
+> those files from where you left.
 
 **JFDI** gives you the liberty to modify your files however you like.
 
