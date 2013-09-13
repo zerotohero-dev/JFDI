@@ -137,8 +137,7 @@ then you can edit these files wherever you want.
 
 And once you are done, they will be syncronized everywhere.
 
-
-**JFDI** it gives you the liberty to modify your files however you like.
+**JFDI** gives you the liberty to modify your files however you like.
 
 It only has a single requirement:
 
