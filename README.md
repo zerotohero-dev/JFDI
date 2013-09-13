@@ -1,6 +1,6 @@
 **Table of Contents** 
 
-- [A Hacker's Way of Getting $#!% Done](#a-hacker's-way-of-getting-$#!%-done)
+- [A Hacker's Way of Getting $#!% Done](#a-hackers-way-of-getting--done)
 	- [Every Saga Has a Beginning](#every-saga-has-a-beginning)
 	- [Why A Command Line Interface?](#why-a-command-line-interface)
 		- [Why Right Now?](#why-right-now)
