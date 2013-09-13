@@ -193,8 +193,7 @@ Here a the places you can get help:
 * If you are experiencing a problem, or if you have found a bug, or if you want
 some cool sh\*t to be implemented
 [you can file an issue](https://github.com/v0lkan/JFDI/issues/new).
-* If you want to figure out how a specific command works,
-If you want to figure out how a function works, this README will be helpful,
+* If you want to figure out how a specific command works, this README will be helpful,
 and you can always [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
 
 ## Where is the Documentation?
