@@ -104,8 +104,8 @@ moon. Your typical **runway** is something like&hellip;
 
 ## It is Plain Text Files, Baby!
 
-Do you know what is universally reachable, and modifiable, withouth needing
-to download special software? 
+Do you know what is universally reachable, and modifiable, without needing
+to download any special software? 
 
 > A plain text file! 
 
