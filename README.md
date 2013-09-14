@@ -2,15 +2,14 @@
 
 - [A Hacker's Way of Getting $#!% Done](#a-hackers-way-of-getting--done)
 	- [Every Saga Has a Beginning](#every-saga-has-a-beginning)
-	- [Why A Command Line Interface?](#why-a-command-line-interface)
-		- [Why Right Now?](#why-right-now)
-	- [Planning Is a Bummer](#planning-is-a-bummer)
+	- [Why a Command Line Interface?](#why-a-command-line-interface)
+		- [Why "Right Now"?](#why-right-now)
 	- [It is Plain Text Files, Baby!](#it-is-plain-text-files-baby!)
 	- [When You Don't Have Access to `jfdi` CLI](#when-you-dont-have-access-to-jfdi-cli)
 	- [Supported Platforms](#supported-platforms)
 	- [Project Directory Structure](#project-directory-structure)
 	- [Where Can I Get Help?](#where-can-i-get-help)
-	- [Where is the Documentation?](#where-is-the-documentation)
+	- [Where Is the Documentation?](#where-is-the-documentation)
 	- [How Do I Setup **JFDI**?](#how-do-setup-jfdi)
 		- [Setup for Linux / Mac](#setup-for-linux--mac)
 		- [Setup for Windows](#setup-for-windows)
@@ -42,12 +41,12 @@ It all started with
 > In a nutshell, **JFDI** is a *command line interface* to help you focus what goals
 you can achieve **right now**.
 
-## Why A Command Line Interface?
+## Why a Command Line Interface?
 
 Because, we geeks live in the terminal. 
 
 Using something that is already
-open, and is most of the time in front of your eyes, will help you **overcome the
+running, and is most of the time available in front of your eyes, will help you **overcome the
 inertia** of launching a separate app to manage your goals &ndash; Here's why:
 
 > Adding a **JFDI** goal is as simple as typing `jfdi save the world`. 
@@ -61,68 +60,65 @@ inertia** of launching a separate app to manage your goals &ndash; Here's why:
 > * render a pretty UI&hellip;
 >
 > If after all that hassle, you will still need to click an "add task"
-> button, just to add a simple gaol, than it's **too much work already**.
+> button, just to add a simple goal, than it is **too much work already**.
 >
 
 And when it is **too much work**, your subconscious will resist to
-use that app. 
+use that app forever. 
 
 * That's why there are **hundreds** of **TODO** applications
-out there; 
+out there, which people have hard time habituating; 
 * And that's why the majority of people are not satisfied with
 their "*task management software*".
 
-> Now compare how you **JFDI**, instead:
+> Now compare how you woul **JFDI**, instead:
 >
 >     Type your goal, hit _enter_ and bang!* it's there.
 >
 > \* *Yes, this does make a "bang!" sound effect in your mind ;).*
 
-No process can be less interruptive, and faster than this!
+No process can be less interruptive, and faster!
 
 The main aim of the application is to help you accomplish
 **what need to be get done today**, with as little distraction as possible. 
 
-So unlike other productivity <stike>pr\*n</stike> apps, in **JFDI**
-you will not find dates, schedules, reminders, labels&hellip; to distract
-yo away.
+So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates, schedules, reminders, labels&hellip; to distract you away in **JFDI**.
 
-### Why Right Now?
+### Why "Right Now"?
 
 Because it's f\*cking " **JFDI** " !
 
-## Planning Is a Bummer
+> Planning Is a Bummer!
 
-Admit it, most of the time you don't plan launching manless spaceships to the
+Admit it, most of the time you don't plan launching a manless spaceship to the
 moon. Your typical **runway** is something like&hellip;
 
-* Fix bug id UNP9959: Unicorns and ponies should live together.
+* Fix bug id UNP9959: "Unicorns and ponies should live together".
 * Remember the milk.
 * Save the world.
 
 > Why torture your brain by setting *due dates* weeks from now
 > to those simple tasks?! 
->
-> **JFDI** what you can do **right now**, and *bump* the rest to
-> **tomorrow**.
+
+**JFDI** what you can do **right now**, and *bump* the rest to **tomorrow**.
 
 ## It is Plain Text Files, Baby!
 
 Do you know what is universally reachable, and modifiable, withouth needing
 to download special software? 
 
-> A plain text file. 
+> A plain text file! 
 
-You can edit your text file on your Mac, on your PC, in your smart phone, 
-in your tablet, on Mars, and on the mooon&hellip; 
+You can edit your text file on your Mac, on your PC, on your smart phone, 
+on your tablet, on Mars, and on the mooon&hellip; 
 
-Text files are damn fast to edit; **they do not distract you**.
+Moreover, text files are damn fast to edit; **they do not distract you**.
 
 What **JFDI** does is similar: 
 
-> **JFDI** maintains *plain text files* in a **sync** directory of your choice. 
+> **JFDI** maintains *plain text files* in a **synchronization** directory of your choice. 
 
-So if you set your **sync** directory to something like:
+If you set your **synchronization** directory to something like:
 
 `/home/procrastinator/Dropbox/JFDI/`
 
@@ -136,7 +132,7 @@ So if you set your **sync** directory to something like:
 
 then you can edit these files wherever you want. 
 
-And once you are done, they will be syncronized everywhere.
+And once you are done, they will be syncronized **everywhere**.
 
 ## When You Don't Have Access to `jfdi` CLI
 
@@ -146,7 +142,7 @@ even if you don't have access to `jfdi` command line interface.
 > Since **JFDI** data files are plain text files, they are universally portable.
 >
 > For instance you can use an editor like [textastic](http://www.textasticapp.com/) 
-> to edit your goal list on your smart phone or tablet), and then when you are
+> to edit your goal list on your smart phone or tablet, and then when you are
 > back in front of your computer, you can use `jfdi` to modify 
 > those files from where you left.
 
@@ -154,9 +150,9 @@ even if you don't have access to `jfdi` command line interface.
 
 It only has a single requirement:
 
-    Keep each goal in a separate line.
+    Keep each goal on a separate line.
 
-It will play nicely, as long as you remmember to **keep each goal in its own line**.
+It will play nicely, as long as you remmember to **keep each goal on its own line**.
 
 And as long as you follow this simple rule, you can edit your text files in
 whichever text editor you like, and when you run `jfdi` again, it will catch up and parse
@@ -164,7 +160,7 @@ the files properly.
 
 ## Supported Platforms
 
-**JFDI** does not have any platform-specific dependencies. 
+> **JFDI** does not have any platform-specific dependencies. 
 
 You should be able to run it on **any platform that supports Node.JS**. 
 
@@ -192,11 +188,11 @@ Here a the places you can get help:
 
 * If you are experiencing a problem, or if you have found a bug, or if you want
 some cool sh\*t to be implemented
-[you can file an issue](https://github.com/v0lkan/JFDI/issues/new).
-* If you want to figure out how a specific command works, this README will be helpful,
-and you can always [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
+[you can file an issue](https://github.com/v0lkan/JFDI/issues/new);
+* If you want to figure out how a specific command works, this README that you are reading right now will be helpful;
+* And you can always [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
 
-## Where is the Documentation?
+## Where Is the Documentation?
 
 Currently the only documentation is this **README**.
 
@@ -215,25 +211,25 @@ added to this **README** ASAP.
 
 ## How Do I Setup **JFDI**?
 
-### Setup for Linux / Mac
-
 Setting up your **JFDI** environment is easy.
+
+### Setup for Linux / Mac
 
 You should have [Node.JS](http://nodejs.org/) installed, first.
 
 Once you have **Node.JS** installed, just run:
 
-    [root@john.doe:~]# sudo npm install -g jfdi
+    sudo npm install -g jfdi
 
-and you will have **JFDI** installed globally.
+in your terminal, and you will have **JFDI** installed globally.
 
 ### Setup for Windows
 
 It is similar to Linux setup. After having installed **Node.JS**, just run.
 
-    [root@john.doe:~]# npm install -g jfdi
+    npm install -g jfdi
 
-and you are done.
+in the command prompt, and you are done.
 
 ## Configuration
 
@@ -490,7 +486,7 @@ With the following exception:
 Each major version of **JFDI** will be maintained as tagged snapshots for
 each version.
 
-### How Do I Contribute?
+## How Do I Contribute?
 
 **JFDI** is in active development, and any contribution is highly appreciated.
 
@@ -507,7 +503,7 @@ Contribution is simple. Just follow these steps:
 
 [File and issue](https://github.com/v0lkan/JFDI/issues/new) or
 [Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
-
+s
 ## License
 
 **JFDI** is distributed under the **MIT** license.
