@@ -1,4 +1,4 @@
-**Table of Contents** 
+**Table of Contents**
 
 - [A Hacker's Way of Getting $#!% Done](#a-hackers-way-of-getting--done)
 	- [Every Saga Has a Beginning](#every-saga-has-a-beginning)
@@ -43,20 +43,20 @@ you can achieve **right now**.
 
 ## Why a Command Line Interface?
 
-Because, we geeks live in the terminal. 
+Because, we geeks live in the terminal.
 
 Using something that is already
 running, and is most of the time available in front of your eyes, will help you **overcome the
 inertia** of launching a separate app to manage your goals &ndash; Here's why:
 
-> Adding a **JFDI** goal is as simple as typing `jfdi save the world`. 
+> Adding a **JFDI** goal is as simple as typing `jfdi save the world`.
 >
 > You don't have to wait for&hellip;
-> 
-> * your shiny dandy GTD desktop app to launch&hellip; 
-> * index its tasks&hellip; 
-> * connect to the Internet&hellip; 
-> * sync recent data&hellip; 
+>
+> * your shiny dandy GTD desktop app to launch&hellip;
+> * index its tasks&hellip;
+> * connect to the Internet&hellip;
+> * sync recent data&hellip;
 > * render a pretty UI&hellip;
 >
 > If after all that hassle, you will still need to click an "add task"
@@ -64,10 +64,10 @@ inertia** of launching a separate app to manage your goals &ndash; Here's why:
 >
 
 And when it is **too much work**, your subconscious will resist to
-use that app forever. 
+use that app forever.
 
 * That's why there are **hundreds** of **TODO** applications
-out there, which people have hard time habituating; 
+out there, which people have hard time habituating;
 * And that's why the majority of people are not satisfied with
 their "*task management software*".
 
@@ -80,7 +80,7 @@ their "*task management software*".
 No process can be less interruptive, and faster!
 
 The main aim of the application is to help you accomplish
-**what need to be get done today**, with as little distraction as possible. 
+**what need to be get done today**, with as little distraction as possible.
 
 So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates, schedules, reminders, labels&hellip; to distract you away in **JFDI**.
 
@@ -98,25 +98,25 @@ moon. Your typical **runway** is something like&hellip;
 * Save the world.
 
 > Why torture your brain by setting *due dates* weeks from now
-> to those simple tasks?! 
+> to those simple tasks?!
 
 **JFDI** what you can do **right now**, and *bump* the rest to **tomorrow**.
 
 ## It is Plain Text Files, Baby!
 
 Do you know what is universally reachable, and modifiable, without needing
-to download any special software? 
+to download any special software?
 
-> A plain text file! 
+> A plain text file!
 
-You can edit your text file on your Mac, on your PC, on your smart phone, 
-on your tablet, on Mars, and on the mooon&hellip; 
+You can edit your text file on your Mac, on your PC, on your smart phone,
+on your tablet, on Mars, and on the mooon&hellip;
 
 Moreover, text files are damn fast to edit; **they do not distract you**.
 
-What **JFDI** does is similar: 
+What **JFDI** does is similar:
 
-> **JFDI** maintains *plain text files* in a **synchronization** directory of your choice. 
+> **JFDI** maintains *plain text files* in a **synchronization** directory of your choice.
 
 If you set your **synchronization** directory to something like:
 
@@ -130,7 +130,7 @@ If you set your **synchronization** directory to something like:
 * **tomorrow.txt**,
 * and **done.txt**;
 
-then you can edit these files wherever you want. 
+then you can edit these files wherever you want.
 
 And once you are done, they will be syncronized **everywhere**.
 
@@ -141,9 +141,9 @@ even if you don't have access to `jfdi` command line interface.
 
 > Since **JFDI** data files are plain text files, they are universally portable.
 >
-> For instance you can use an editor like [textastic](http://www.textasticapp.com/) 
+> For instance you can use an editor like [textastic](http://www.textasticapp.com/)
 > to edit your goal list on your smart phone or tablet, and then when you are
-> back in front of your computer, you can use `jfdi` to modify 
+> back in front of your computer, you can use `jfdi` to modify
 > those files from where you left.
 
 **JFDI** gives you the liberty to modify your files however you like.
@@ -160,9 +160,9 @@ the files properly.
 
 ## Supported Platforms
 
-> **JFDI** does not have any platform-specific dependencies. 
+> **JFDI** does not have any platform-specific dependencies.
 
-You should be able to run it on **any platform that supports Node.JS**. 
+You should be able to run it on **any platform that supports Node.JS**.
 
 It should work properly in all major **Windows**, **Mac OSX**, and **Linux Platforms**.
 
@@ -241,7 +241,7 @@ in the command prompt, and you are done.
 > **Tip**:
 >
 > You might need root privileges to use **JFDI**.
-> 
+>
 > If the command examples given below do not work for you, replace
 > `jfdi` with `sudo jfdi`, and try them again.
 >
@@ -485,6 +485,15 @@ With the following exception:
 
 Each major version of **JFDI** will be maintained as tagged snapshots for
 each version.
+
+## Deployment Policy
+
+* Everything is implemented and tested on the **develop** branch first;
+* Then unit tests are written on the **develop** branch for the changes;
+* Once the [CI](https://travis-ci.org/v0lkan/JFDI) is **all green**,
+**develop** branch is merged into **master**.
+* ** Once the **master** gives all green on the on the **CI** too, then the
+final module is `npm publish`ed.
 
 ## How Do I Contribute?
 
