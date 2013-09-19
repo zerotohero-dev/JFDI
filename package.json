@@ -4,8 +4,8 @@
   "bin": {
     "jfdi": "index.js"
   },
-  "version": "0.9.0",
-  "description": "A Hacker's Way of Getting Stuff Done",
+  "version": "0.9.1",
+  "description": "A Hacker's Way of Getting $#!% Done",
   "main": "index.js",
   "scripts": {
     "test": "vows --spec"
