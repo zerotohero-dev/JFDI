@@ -35,8 +35,6 @@ function resetState() {
 
 var oldArguments;
 
-// TODO: be DRY. those setup/teardown
-// directives repeat in all tests, move them to a common module.
 function setup(postSetup) {
     oldArguments = process.argv;
 

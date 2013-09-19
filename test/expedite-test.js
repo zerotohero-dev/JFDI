@@ -171,7 +171,7 @@ vows.describe('jfdi -e 0 today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleSoonerIncorrectRealm');});
+                setup(function() {sinon.stub(command.privates, 'handleExpediteIncorrectRealm');});
 
                 // Create the command.
                 process.argv = getArgv(this);
@@ -180,10 +180,10 @@ vows.describe('jfdi -e 0 today').addBatch({
 
                 runtime.execute();
 
-                expectation = command.privates.handleSoonerIncorrectRealm.calledOnce;
+                expectation = command.privates.handleExpediteIncorrectRealm.calledOnce;
 
                 // Teardown.
-                teardown(function() {command.privates.handleSoonerIncorrectRealm.restore();});
+                teardown(function() {command.privates.handleExpediteIncorrectRealm.restore();});
 
                 return expectation;
             },
@@ -231,7 +231,7 @@ vows.describe('jfdi --expedite 0 today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleSoonerIncorrectRealm');});
+                setup(function() {sinon.stub(command.privates, 'handleExpediteIncorrectRealm');});
 
                 // Create the command.
                 process.argv = getArgv(this);
@@ -240,10 +240,10 @@ vows.describe('jfdi --expedite 0 today').addBatch({
 
                 runtime.execute();
 
-                expectation = command.privates.handleSoonerIncorrectRealm.calledOnce;
+                expectation = command.privates.handleExpediteIncorrectRealm.calledOnce;
 
                 // Teardown.
-                teardown(function() {command.privates.handleSoonerIncorrectRealm.restore();});
+                teardown(function() {command.privates.handleExpediteIncorrectRealm.restore();});
 
                 return expectation;
             },
