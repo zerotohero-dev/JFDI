@@ -15,8 +15,8 @@
  *                                   \::/__/      \/__/
  */
 
-var JFDI = require('./lib/JFDI');
-var runtime = require('./lib/runtime');
+var JFDI = require('./lib/JFDI'),
+    runtime = require('./lib/runtime');
 
 if (!JFDI.sanitize()) {return;}
 

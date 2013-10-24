@@ -15,15 +15,17 @@
 
 /*jshint maxlen:180*/
 
-var vows = require('vows');
-var assert = require('assert');
-var sinon = require('sinon');
-var fs = require('fs');
-var program = require('commander');
+var vows = require('vows'),
+    assert = require('assert'),
+    sinon = require('sinon'),
+    fs = require('fs'),
+    program = require('commander');
 
-var JFDI = require('../lib/JFDI');
-var runtime = require('../lib/runtime');
-var command = require('../lib/command');
+var JFDI = require('../lib/JFDI'),
+    runtime = require('../lib/runtime'),
+    command = require('../lib/command');
+
+var oldArguments;
 
 function resetState() {
     delete program.add;
@@ -33,8 +35,6 @@ function resetState() {
     delete program.prioritize;
     delete program['do'];
 }
-
-var oldArguments;
 
 function setup(postSetup) {
     oldArguments = process.argv;

@@ -15,12 +15,12 @@
 
 /*jshint maxlen:180*/
 
-var vows = require('vows');
-var assert = require('assert');
-var sinon = require('sinon');
-var prompt = require('prompt');
-var fs = require('fs');
-var program = require('commander');
+var vows = require('vows'),
+    assert = require('assert'),
+    sinon = require('sinon'),
+    prompt = require('prompt'),
+    fs = require('fs'),
+    program = require('commander');
 
 var JFDI = require('../lib/JFDI');
 

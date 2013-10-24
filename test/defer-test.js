@@ -15,15 +15,17 @@
 
 /*jshint maxlen:180*/
 
-var vows = require('vows');
-var assert = require('assert');
-var sinon = require('sinon');
-var fs = require('fs');
-var program = require('commander');
+var vows = require('vows'),
+    assert = require('assert'),
+    sinon = require('sinon'),
+    fs = require('fs'),
+    program = require('commander');
 
-var JFDI = require('../lib/JFDI');
-var runtime = require('../lib/runtime');
-var command = require('../lib/command');
+var JFDI = require('../lib/JFDI'),
+    runtime = require('../lib/runtime'),
+    command = require('../lib/command');
+
+var oldArguments;
 
 function resetState() {
     delete program.add;
@@ -33,8 +35,6 @@ function resetState() {
     delete program.prioritize;
     delete program['do'];
 }
-
-var oldArguments;
 
 function setup(postSetup) {
     oldArguments = process.argv;
@@ -398,7 +398,7 @@ vows.describe('jfdi --defer 0 today').addBatch({
                 setup(function() {sinon.stub(command.privates, 'handleDefer');});
 
                 // Create the command.
-                process.argv = ['node', '.', '--defer', '0', 'today'];
+                process.argv = getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
@@ -419,3 +419,57 @@ vows.describe('jfdi --defer 0 today').addBatch({
 /*----------------------------------------------------------------------------*/
 
 // vows.describe('jfdi --defer 0 tomorrow').addBatch(dummyBatch).export(module);
+vows.describe('jfdi --defer 0 tomorrow').addBatch({
+    'Parsing>>>': {
+        'when "jfdi --defer 0 tomorrow" is called': {
+            topic: function() {
+                var args, expectation;
+
+                setup();
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+
+                args = process.argv;
+
+                expectation = args[2] === '--defer' &&
+                    args[3] === '0' &&
+                    args[4] === 'tomorrow' &&
+                    args.length === 5;
+
+                teardown();
+
+                return expectation;
+            },
+            'it should translate to "jfdi --defer 0 tomorrow"': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    },
+    'Execution>>>': {
+        'when "jfdi --defer 0 tomorrow" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {sinon.stub(command.privates, 'handleDeferIncorrectRealm');});
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = command.privates.handleDeferIncorrectRealm.calledOnce;
+
+                teardown(function() {command.privates.handleDeferIncorrectRealm.restore();});
+
+                return expectation;
+            },
+            'it should warn the user': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
