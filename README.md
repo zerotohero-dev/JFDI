@@ -537,7 +537,7 @@ Contribution is simple. Just follow these steps:
 
 [File an issue](https://github.com/v0lkan/JFDI/issues/new) or
 [Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
-s
+
 ## License
 
 **JFDI** is distributed under the **MIT** license.
