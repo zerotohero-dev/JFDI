@@ -1,3 +1,7 @@
+![JFDI Travis CI Build Status](https://api.travis-ci.org/v0lkan/JFDI.png) &nbsp;
+![JFDI NPM version](https://badge.fury.io/js/jfdi.png) &nbsp;
+![Dependency Info](https://david-dm.org/v0lkan/JFDI.png)
+
 **Table of Contents**
 
 - [A Hacker's Way of Getting $#!% Done](#a-hackers-way-of-getting--done)
