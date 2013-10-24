@@ -221,7 +221,7 @@ than the master branch. You will probably have a "mostly working" app, with inco
 > Any code that breaks the tests are generally not pushed to develop, therefore the
 > develop branch is generally safe with missing tests and documentation.
     
-To use the develop branch use the following commands:
+To use the develop branch, `git clone` and `npm link` it as follows:
 
     [root@john.doe:~]#git clone https://github.com/v0lkan/JFDI.git
     [root@john.doe:~]#git checkout develop
