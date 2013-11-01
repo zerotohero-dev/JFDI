@@ -74,63 +74,84 @@ function getArgv(test) {
     return test.suite.subject.replace('jfdi', 'node .').split(/\s+/);
 }
 
+function createVow(phrase, parsingExpectation, executionExpectation, parsingDelegate, executionDelegate) {
+    var kParsing = 'Parsing>>>',
+        kExecution = 'Execution>>>',
+        kPhraseCalled = 'when "' + phrase + '" is called',
+        evaluation = {};
+
+    evaluation[kParsing] = {};
+    evaluation[kParsing][kPhraseCalled] = {topic: parsingDelegate};
+    evaluation[kParsing][kPhraseCalled][parsingExpectation] = function(expectation) {
+        assert.equal(expectation, true);
+    };
+    evaluation[kExecution] = {};
+    evaluation[kExecution][kPhraseCalled] = {topic: executionDelegate};
+    evaluation[kParsing][kPhraseCalled][executionExpectation] = function(expectation) {
+        assert.equal(expectation, true);
+    };
+
+    vows.describe(phrase).addBatch(evaluation).export(module);
+}
+
+function createParseExpectation(context, expect) {
+    var args, expectation;
+
+    setup();
+
+    // Create the command.
+    process.argv = getArgv(context);
+
+    runtime.initialize();
+
+    args = process.argv;
+
+    expectation = expect(args);
+
+    teardown();
+
+    return expectation;
+}
+
+function createExecuteExpectation(context, methodName) {
+    var expectation;
+
+    setup(function() {sinon.stub(command, methodName);});
+
+    // Create the command.
+    process.argv = getArgv(context);
+
+    runtime.initialize();
+
+    runtime.execute();
+
+    expectation = command[methodName].calledOnce;
+
+    teardown(function() {command[methodName].restore();});
+
+    return expectation;
+}
+
 /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo" is called': {
-            topic: function() {
-                var args, expectation;
-
-                setup();
-
-                // Create the command.
-                process.argv = getArgv(this);
-
-                runtime.initialize();
-
-                args = process.argv;
-
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
-
-                teardown();
-
-                return expectation;
-            },
-            'it should translate to "jfdi --add foo today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
+//TODO: convert all tests to this format.
+//TODO: the above functions are commonly shared; move them to a utility module.
+createVow(
+    'jfdi foo',
+    'it should translate to "jfdi --add foo today"',
+    'it should add a new task to today',
+    function() {
+        return createParseExpectation(this, function(args) {
+            return args[2] === '--add' &&
+                args[3] === 'foo' &&
+                args[4] === 'today' &&
+                args.length === 5;
+        });
     },
-    'Execution>>>': {
-        'when "jfdi foo" is called': {
-            topic: function() {
-                var expectation;
-
-                setup(function() {sinon.stub(command, 'handleToday');});
-
-                // Create the command.
-                process.argv = getArgv(this);
-
-                runtime.initialize();
-
-                runtime.execute();
-
-                expectation = command.handleToday.calledOnce;
-
-                teardown(function() {command.handleToday.restore();});
-
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
+    function() {
+        return createExecuteExpectation(this, 'handleToday');
     }
-}).export(module);
+);
 
 /*----------------------------------------------------------------------------*/
 
@@ -153,7 +174,6 @@ vows.describe('jfdi foo bar').addBatch({
                     args[3] === 'foo bar' &&
                     args[4] === 'today' &&
                     args.length === 5;
-
 
                 teardown();
 

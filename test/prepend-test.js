@@ -15,24 +15,404 @@
 
 /*jshint maxlen:180*/
 
-var vows = require('vows');
+// var vows = require('vows');
 
-// jfdi -M 0
-// jfdi -M 0 -D foo
-// jfdi -M 0 -D foo today
-// jfdi -M 0 tomorrow
-// jfdi -M 0 -D foo tomorrow
+// /*----------------------------------------------------------------------------*/
 
-// jfdi --prepend 0
-// jfdi --prepend 0 -D foo
-// jfdi --prepend 0 -D foo today
-// jfdi --prepend 0 tomorrow
-// jfdi --prepend 0 -D foo tomorrow
+// vows.describe('jfdi -M 0').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
 
-// jfdi -M 0 --text foo
-// jfdi -M 0 --text foo today
-// jfdi -M 0 --text foo tomorrow
+//             },
+//             'it should translate to "".': function(expectation) {
 
-// jfdi --prepend 0 --text foo
-// jfdi --prepend 0 --text foo today
-// jfdi --prepend 0 --text foo tomorrow
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 -D foo').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 -D foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 -D foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 -D foo').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 -D foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// ----------------------------------------------------------------------------
+
+// vows.describe('jfdi --prepend 0 tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 -D foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 --text foo').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 --text foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -M 0 --text foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 --text foo').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 --text foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --prepend 0 --text foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);

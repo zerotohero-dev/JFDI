@@ -15,24 +15,414 @@
 
 /*jshint maxlen:180*/
 
-// var vows = require('vows');
+// var vows = require('vows'),
+//     assert = require('assert'),
+//     sinon = require('sinon'),
+//     fs = require('fs'),
+//     program = require('commander');
 
-// jfdi -m 0
-// jfdi -m 0 -D foo
-// jfdi -m 0 -D foo today
-// jfdi -m 0 tomorrow
-// jfdi -m 0 -D foo tomorrow
+// /*----------------------------------------------------------------------------*/
 
-// jfdi --append 0
-// jfdi --append 0 -D foo
-// jfdi --append 0 -D foo today
-// jfdi --append 0 tomorrow
-// jfdi --append 0 -D foo tomorrow
+// vows.describe('jfdi -m 0').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0" is called': {
+//             topic: function() {
+//                 var expectation;
 
-// jfdi -m 0 --text foo
-// jfdi -m 0 --text foo today
-// jfdi -m 0 --text foo tomorrow
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -m 0 today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0" is called': {
+//             topic: function() {
+//                 var expectation;
 
-// jfdi --append 0 --text foo
-// jfdi --append 0 --text foo today
-// jfdi --append 0 --text foo tomorrow
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 -D foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 -D foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 -D foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 -D foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 -D foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 -D foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 -D foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 -D foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 -D foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 -D foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 -D foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 -D foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 -D foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 -D foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 -D foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 -D foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 -D foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 -D foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 --text foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 --text foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 --text foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 --text foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 --text foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 --text foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi -m 0 --text foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -m 0 --text foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -m 0 --text foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 --text foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 --text foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 --text foo" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 --text foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 --text foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 --text foo today" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+// /*----------------------------------------------------------------------------*/
+
+// vows.describe('jfdi --append 0 --text foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --append 0 --text foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it should translate to "".': function(expectation) {
+
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --append 0 --text foo tomorrow" is called': {
+//             topic: function() {
+
+//             },
+//             'it': function(expectation) {
+
+//             }
+//         }
+//     }
+// }).export(module);
+
+
