@@ -78,7 +78,7 @@ function getArgv(test) {
 
 // vows.describe('jfdi -M 0').addBatch({
 //     'Parsing>>>': {
-//         'when "" is called': {
+//         'when "jfdi -M 0" is called': {
 //             topic: function() {
 //                 var args, expectation;
 
@@ -91,7 +91,7 @@ function getArgv(test) {
 
 //                 args = process.argv;
 
-//                 expectation = args[2] === '-m' &&
+//                 expectation = args[2] === '-M' &&
 //                     args[3] ==='0' &&
 //                     args[4] === 'today' &&
 //                     args.length === 5;
@@ -100,17 +100,17 @@ function getArgv(test) {
 
 //                 return expectation;
 //             },
-//             'it should translate to "".': function(expectation) {
+//             'it should translate to "jfdi -M 0 today".': function(expectation) {
 //                 assert.equal(expectation, true);
 //             }
 //         }
 //     },
 //     'Execution>>>': {
-//         'when "" is called': {
+//         'when "jfdi -M 0" is called': {
 //             topic: function() {
 
 //             },
-//             'it': function(expectation) {
+//             'it should warnd the user': function(expectation) {
 //                 assert.equal(expectation, true);
 //             }
 //         }
