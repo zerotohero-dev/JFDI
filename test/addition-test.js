@@ -85,6 +85,7 @@ function createVow(phrase, parsingExpectation, executionExpectation, parsingDele
     evaluation[kParsing][kPhraseCalled][parsingExpectation] = function(expectation) {
         assert.equal(expectation, true);
     };
+
     evaluation[kExecution] = {};
     evaluation[kExecution][kPhraseCalled] = {topic: executionDelegate};
     evaluation[kParsing][kPhraseCalled][executionExpectation] = function(expectation) {
