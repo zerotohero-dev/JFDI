@@ -33,6 +33,11 @@ function resetState() {
     delete program.defer;
     delete program.expedite;
     delete program.prioritize;
+    delete program.append;
+    delete program.prepend;
+    delete program.replace;
+    delete program.text;
+    delete program['with'];
     delete program['do'];
 }
 
@@ -156,912 +161,912 @@ createVow(
 
 /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo bar').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo bar" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo bar').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo bar" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo bar" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo bar" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo bar baz').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo bar baz" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo bar baz').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo bar baz" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar baz' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar baz' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo bar" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo bar" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -a foo').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -a foo" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -a foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -a foo" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-a' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '-a' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -a \'foo\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -a foo" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -a \'foo\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -a foo" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --add foo').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --add foo" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --add foo').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --add foo" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -add foo" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -add foo" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo bar today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo bar today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo bar today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo bar today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo bar baz today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo bar baz today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo bar baz today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo bar baz today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar baz' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar baz' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -a foo today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -a foo today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -a foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -a foo today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-a' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '-a' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -a \'foo\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -a foo today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -a \'foo\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -a foo today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -a foo bar today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -a foo bar today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -a foo bar today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -a foo bar today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-a' &&
-                    args[3] === 'foo bar' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '-a' &&
+//                     args[3] === 'foo bar' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -a \'foo bar\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -a foo bar today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -a \'foo bar\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -a foo bar today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -a foo bar baz today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -a foo bar baz today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -a foo bar baz today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -a foo bar baz today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-a' &&
-                    args[3] === 'foo bar baz' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '-a' &&
+//                     args[3] === 'foo bar baz' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -a \'foo bar baz\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -a foo bar baz today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -a \'foo bar baz\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -a foo bar baz today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --add foo today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --add foo today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --add foo today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --add foo today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi --add foo today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --add foo today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --add foo bar today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --add foo bar today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --add foo bar today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --add foo bar today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi --add foo bar today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --add foo bar today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --add foo bar baz today').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --add foo bar baz today" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --add foo bar baz today').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --add foo bar baz today" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo bar baz' &&
-                    args[4] === 'today' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo bar baz' &&
+//                     args[4] === 'today' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi --add foo bar baz today" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo bar baz\' today"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --add foo bar baz today" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command, 'handleToday');});
+//                 setup(function() {sinon.stub(command, 'handleToday');});
 
-                // Create the command.
-                process.argv = ['node', '.', '--add', 'foo', 'bar', 'baz', 'today'];
+//                 // Create the command.
+//                 process.argv = ['node', '.', '--add', 'foo', 'bar', 'baz', 'today'];
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.handleToday.calledOnce;
+//                 expectation = command.handleToday.calledOnce;
 
-                teardown(function() {command.handleToday.restore();});
+//                 teardown(function() {command.handleToday.restore();});
 
-                return expectation;
-            },
-            'it should add a new task to today': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should add a new task to today': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi foo tomorrow').addBatch({
-    'Parsing>>>': {
-        'when "jfdi foo tomorrow" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi foo tomorrow" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'tomorrow' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'tomorrow' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi foo tomorrow" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi foo tomorrow" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
+//                 setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+//                 expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
 
-                teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
+//                 teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
 
-                return expectation;
-            },
-            'it should warn user about the incorrect behavior': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should warn user about the incorrect behavior': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -a foo tomorrow').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -a foo tomorrow" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -a foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -a foo tomorrow" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-a' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'tomorrow' &&
-                    args.length === 5;
+//                 expectation = args[2] === '-a' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'tomorrow' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -a \'foo\' tomorrow"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi -a foo tomorrow" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -a \'foo\' tomorrow"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi -a foo tomorrow" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
+//                 setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+//                 expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
 
-                teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
+//                 teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
 
-                return expectation;
-            },
-            'it should warn user about the incorrect behavior': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should warn user about the incorrect behavior': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --add foo tomorrow').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --add foo tomorrow" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --add foo tomorrow').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --add foo tomorrow" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--add' &&
-                    args[3] === 'foo' &&
-                    args[4] === 'tomorrow' &&
-                    args.length === 5;
+//                 expectation = args[2] === '--add' &&
+//                     args[3] === 'foo' &&
+//                     args[4] === 'tomorrow' &&
+//                     args.length === 5;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    },
-    'Execution>>>': {
-        'when "jfdi --add foo tomorrow" is called': {
-            topic: function() {
-                var expectation;
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --add \'foo\' tomorrow"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     },
+//     'Execution>>>': {
+//         'when "jfdi --add foo tomorrow" is called': {
+//             topic: function() {
+//                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
+//                 setup(function() {sinon.stub(command.privates, 'handleAdditionIncorrectRealm');});
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
-                runtime.execute();
+//                 runtime.initialize();
+//                 runtime.execute();
 
-                expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
+//                 expectation = command.privates.handleAdditionIncorrectRealm.calledOnce;
 
-                teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
+//                 teardown(function() {command.privates.handleAdditionIncorrectRealm.restore();});
 
-                return expectation;
-            },
-            'it should warn user about the incorrect behavior': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should warn user about the incorrect behavior': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);

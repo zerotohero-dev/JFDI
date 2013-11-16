@@ -32,6 +32,11 @@ function resetState() {
     delete program.defer;
     delete program.expedite;
     delete program.prioritize;
+    delete program.append;
+    delete program.prepend;
+    delete program.replace;
+    delete program.text;
+    delete program['with'];
     delete program['do'];
 }
 
@@ -75,248 +80,248 @@ function getArgv(test) {
 
 /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -h').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -h" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -h').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -h" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-h' &&
-                    args.length === 3;
+//                 expectation = args[2] === '-h' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -h"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -h"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -h bazinga').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -h bazinga" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -h bazinga').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -h bazinga" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-h' &&
-                    args.length === 3;
+//                 expectation = args[2] === '-h' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -h"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -h"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --help').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --help" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --help').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --help" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--help' &&
-                    args.length === 3;
+//                 expectation = args[2] === '--help' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --help"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --help"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --help bazinga').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --help bazinga" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --help bazinga').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --help bazinga" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--help' &&
-                    args.length === 3;
+//                 expectation = args[2] === '--help' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --help"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --help"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// ----------------------------------------------------------------------------
 
-vows.describe('jfdi -V').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -V" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -V').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -V" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-V' &&
-                    args.length === 3;
+//                 expectation = args[2] === '-V' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -V"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -V"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi -V bazinga').addBatch({
-    'Parsing>>>': {
-        'when "jfdi -V bazinga" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi -V bazinga').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi -V bazinga" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '-V' &&
-                    args.length === 3;
+//                 expectation = args[2] === '-V' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi -V"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi -V"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --version').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --version" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --version').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --version" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--version' &&
-                    args.length === 3;
+//                 expectation = args[2] === '--version' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --version"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --version"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);
 
-/*----------------------------------------------------------------------------*/
+// /*----------------------------------------------------------------------------*/
 
-vows.describe('jfdi --version bazinga').addBatch({
-    'Parsing>>>': {
-        'when "jfdi --version bazinga" is called': {
-            topic: function() {
-                var args, expectation;
+// vows.describe('jfdi --version bazinga').addBatch({
+//     'Parsing>>>': {
+//         'when "jfdi --version bazinga" is called': {
+//             topic: function() {
+//                 var args, expectation;
 
-                setup();
+//                 setup();
 
-                // Create the command.
-                process.argv = getArgv(this);
+//                 // Create the command.
+//                 process.argv = getArgv(this);
 
-                runtime.initialize();
+//                 runtime.initialize();
 
-                args = process.argv;
+//                 args = process.argv;
 
-                expectation = args[2] === '--version' &&
-                    args.length === 3;
+//                 expectation = args[2] === '--version' &&
+//                     args.length === 3;
 
-                teardown();
+//                 teardown();
 
-                return expectation;
-            },
-            'it should translate to "jfdi --version"': function(expectation) {
-                assert.equal(expectation, true);
-            }
-        }
-    }
-}).export(module);
+//                 return expectation;
+//             },
+//             'it should translate to "jfdi --version"': function(expectation) {
+//                 assert.equal(expectation, true);
+//             }
+//         }
+//     }
+// }).export(module);

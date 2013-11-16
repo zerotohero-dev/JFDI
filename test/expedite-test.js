@@ -27,19 +27,24 @@ var JFDI = require('../lib/JFDI'),
 
 var oldArguments;
 
-function resetProgramState() {
+function resetState() {
     delete program.add;
     delete program.find;
     delete program.defer;
     delete program.expedite;
     delete program.prioritize;
+    delete program.append;
+    delete program.prepend;
+    delete program.replace;
+    delete program.text;
+    delete program['with'];
     delete program['do'];
 }
 
 function setup(postSetup) {
     oldArguments = process.argv;
 
-    resetProgramState();
+    resetState();
 
     // To prevent overwriting data/.root.
     sinon.stub(fs, 'writeFileSync');
@@ -67,7 +72,7 @@ function teardown(preTeardown) {
 
     process.argv = oldArguments;
 
-    resetProgramState();
+    resetState();
 }
 
 function getArgv(test) {

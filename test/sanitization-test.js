@@ -30,6 +30,11 @@ function resetState() {
     delete program.defer;
     delete program.expedite;
     delete program.prioritize;
+    delete program.append;
+    delete program.prepend;
+    delete program.replace;
+    delete program.text;
+    delete program['with'];
     delete program['do'];
 }
 
