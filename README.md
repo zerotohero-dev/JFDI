@@ -14,6 +14,7 @@
 	- [Project Directory Structure](#project-directory-structure)
 	- [Where Can I Get Help?](#where-can-i-get-help)
 	- [Where Is the Documentation?](#where-is-the-documentation)
+	- [Can I Get the **Cutting-Edge** Version?](#can-i-get-the-cutting-edge-version)
 	- [How Do I Setup **JFDI**?](#how-do-setup-jfdi)
 		- [Setup for Linux / Mac](#setup-for-linux--mac)
 		- [Setup for Windows](#setup-for-windows)
@@ -212,6 +213,26 @@ for usage examples, and installation details.
 >If you write rewiews in your blog,
 [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com) and it will be
 added to this **README** ASAP.
+
+## Can I Get the **Cutting-Edge** Version?
+
+If you are okay to trade up slight unstability for added coolness, additional commands and more features;
+then you might want to check out [the develop branch](https://github.com/v0lkan/JFDI/tree/develop).
+
+[The develop branch](https://github.com/v0lkan/JFDI/tree/develop) is more frequently updated
+than the master branch. You will probably have a "mostly working" app, with incomplete tests.
+
+> Any code that breaks the tests are generally not pushed to develop, therefore the
+> develop branch is generally safe with missing tests and documentation.
+    
+To use the develop branch, `git clone` and `npm link` it as follows:
+
+    [root@john.doe:~]#git clone https://github.com/v0lkan/JFDI.git
+    [root@john.doe:~]#git checkout develop
+    [root@john.doe:~]#cd JFDI
+    [root@john.doe:~]#npm link   
+    
+If you have issues setting up the develop version, [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
 
 ## How Do I Setup **JFDI**?
 
@@ -516,7 +537,7 @@ Contribution is simple. Just follow these steps:
 
 [File an issue](https://github.com/v0lkan/JFDI/issues/new) or
 [Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
-s
+
 ## License
 
 **JFDI** is distributed under the **MIT** license.
