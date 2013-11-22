@@ -76,7 +76,9 @@ function teardown(preTeardown) {
 }
 
 function getArgv(test) {
-    return test.suite.subject.replace('jfdi', 'node .').split(/\s+/);
+    return (
+        (typeof test === 'string') ? test : test.suite.subject
+    ).replace('jfdi', 'node .').split(/\s+/);
 }
 
 function createVow(phrase, parsingExpectation, executionExpectation, parsingDelegate, executionDelegate) {

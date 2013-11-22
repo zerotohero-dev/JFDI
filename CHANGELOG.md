@@ -1,3 +1,7 @@
+# 0.10.0
+
+* Fixed "undefined" lines in `done.txt` when a goal is completed.
+
 # v.0.9.11
 
 * Implemented "replace" feature.

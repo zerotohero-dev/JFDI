@@ -76,7 +76,9 @@ function teardown(preTeardown) {
 }
 
 function getArgv(test) {
-    return test.suite.subject.replace('jfdi', 'node .').split(/\s+/);
+    return (
+        (typeof test === 'string') ? test : test.suite.subject
+    ).replace('jfdi', 'node .').split(/\s+/);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -527,6 +529,46 @@ vows.describe('jfdi --do 0 today').addBatch({
                 expectation = command.privates.handleComplete.calledOnce;
 
                 teardown(function() {command.privates.handleComplete.restore();});
+
+                return expectation;
+            },
+            'it should complete the item': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
+
+/*----------------------------------------------------------------------------*/
+/* Bug-related tests below                                                    */
+/*----------------------------------------------------------------------------*/
+
+vows.describe('#33 - done.txt should not log "undefined"').addBatch({
+    '#33': {
+        'when "jfdi 0" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function(){
+                    sinon.stub(JFDI.privates, 'getTodayGoals').returns([{item: 'bazinga'}]);
+                    sinon.stub(JFDI.privates, 'persistTodayGoals');
+                    sinon.stub(JFDI.privates, 'appendDoneGoals', function(item) {
+                        expectation = item.indexOf('bazinga') > -1;
+                    });
+                });
+
+                // Create the command.
+                process.argv = getArgv('jfdi 0');
+
+                runtime.initialize();
+                runtime.execute();
+
+                teardown(function(){
+                    JFDI.privates.getTodayGoals.restore();
+                    JFDI.privates.persistTodayGoals.restore();
+                    JFDI.privates.appendDoneGoals.restore();
+                });
 
                 return expectation;
             },
