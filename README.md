@@ -5,35 +5,37 @@
 **Table of Contents**
 
 - [A Hacker's Way of Getting $#!% Done](#a-hackers-way-of-getting--done)
-	- [Every Saga Has a Beginning](#every-saga-has-a-beginning)
-	- [Why a Command Line Interface?](#why-a-command-line-interface)
-		- [Why "Right Now"?](#why-right-now)
-	- [It is Plain Text Files, Baby!](#it-is-plain-text-files-baby!)
-	- [When You Don't Have Access to `jfdi` CLI](#when-you-dont-have-access-to-jfdi-cli)
-	- [Supported Platforms](#supported-platforms)
-	- [Project Directory Structure](#project-directory-structure)
-	- [Where Can I Get Help?](#where-can-i-get-help)
-	- [Where Is the Documentation?](#where-is-the-documentation)
-	- [Can I Get the **Cutting-Edge** Version?](#can-i-get-the-cutting-edge-version)
-	- [How Do I Setup **JFDI**?](#how-do-setup-jfdi)
-		- [Setup for Linux / Mac](#setup-for-linux--mac)
-		- [Setup for Windows](#setup-for-windows)
-	- [Configuration](#configuration)
-	- [Usage](#usage)
-		- [Displaying Help](#displaying-help)
-		- [Adding a Goal](#adding-a-goal)
-		- [Listing Goals](#listing-goals)
-		- [Deferring a Goal](#deferring-a-goal)
-		- [Listing Deferred Goals](#listing-deferred-goals)
-		- [Moving a Goal Back to Today's Queue](#moving-a-goal-back-to-today's-queue)
-		- [Marking a Goal as Done](#marking-a-goal-as-done)
-		- [Searching for Goals](#searching-for-goals)
-	- [Things to Be Implemented](#things-to-be-implemented)
-	- [Versioning](#versioning)
-	- [How Do I Contribute?](#how-do-i-contribute)
-	- [I Have A Question](#i-have-a-question)
-	- [License](#license)
-	- [Contact Information](#contact-information)
+    - [Every Saga Has a Beginning](#every-saga-has-a-beginning)
+    - [Why a Command Line Interface?](#why-a-command-line-interface)
+        - [Why "Right Now"?](#why-right-now)
+    - [It is Plain Text Files, Baby!](#it-is-plain-text-files-baby!)
+    - [When You Don't Have Access to `jfdi` CLI](#when-you-dont-have-access-to-jfdi-cli)
+    - [Supported Platforms](#supported-platforms)
+    - [Project Directory Structure](#project-directory-structure)
+    - [Where Can I Get Help?](#where-can-i-get-help)
+    - [Where Is the Documentation?](#where-is-the-documentation)
+    - [How Do I Setup **JFDI**?](#how-do-i-setup-jfdi)
+        - [Setup for Linux / Mac](#setup-for-linux--mac)
+        - [Setup for Windows](#setup-for-windows)
+    - [Configuration](#configuration)
+    - [Usage](#usage)
+        - [Displaying Help](#displaying-help)
+        - [Adding a Goal](#adding-a-goal)
+        - [Listing Goals](#listing-goals)
+        - [Deferring a Goal](#deferring-a-goal)
+        - [Appending Text to a Goal](#appending-text-to-a-goal)
+        - [Prepending Text to a Goal](#prepending-text-to-a-goal)
+        - [Replacing Text within a Goal](#replacing-text-within-a-goal)
+        - [Listing Deferred Goals](#listing-deferred-goals)
+        - [Moving a Goal Back to Today's Queue](#moving-a-goal-back-to-today's-queue)
+        - [Marking a Goal as Done](#marking-a-goal-as-done)
+        - [Searching for Goals](#searching-for-goals)
+    - [Things to Be Implemented](#things-to-be-implemented)
+    - [Versioning](#versioning)
+    - [How Do I Contribute?](#how-do-i-contribute)
+    - [I Have A Question](#i-have-a-question)
+    - [License](#license)
+    - [Contact Information](#contact-information)
 
 # A Hacker's Way of Getting $#!% Done
 
@@ -43,16 +45,16 @@ It all started with
 [the **JFDI** Methodology](https://gist.github.com/v0lkan/2694911) and
 [the **JFDI** Manifesto](https://gist.github.com/v0lkan/2731233).
 
-> In a nutshell, **JFDI** is a *command line interface* to help you focus what goals
-you can achieve **right now**.
+> In a nutshell, **JFDI** is a *command line interface* to help you focus what
+goals you can achieve **right now**.
 
 ## Why a Command Line Interface?
 
 Because, we geeks live in the terminal.
 
-Using something that is already
-running, and is most of the time available in front of your eyes, will help you **overcome the
-inertia** of launching a separate app to manage your goals &ndash; Here's why:
+Using something that is already running, and is most of the time available in
+front of your eyes, will help you **overcome the inertia** of launching a
+separate app to manage your goals &ndash; Here's why:
 
 > Adding a **JFDI** goal is as simple as typing `jfdi save the world`.
 >
@@ -66,7 +68,6 @@ inertia** of launching a separate app to manage your goals &ndash; Here's why:
 >
 > If after all that hassle, you will still need to click an "add task"
 > button, just to add a simple goal, than it is **too much work already**.
->
 
 And when it is **too much work**, your subconscious will resist to
 use that app forever.
@@ -76,7 +77,7 @@ out there, which people have hard time habituating;
 * And that's why the majority of people are not satisfied with
 their "*task management software*".
 
-> Now compare how you woul **JFDI**, instead:
+> Now compare how you would **JFDI**, instead:
 >
 >     Type your goal, hit _enter_ and bang!* it's there.
 >
@@ -87,7 +88,8 @@ No process can be less interruptive, and faster!
 The main aim of the application is to help you accomplish
 **what need to be get done today**, with as little distraction as possible.
 
-So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates, schedules, reminders, labels&hellip; to distract you away in **JFDI**.
+So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates,
+schedules, reminders, labels&hellip; to distract you away in **JFDI**.
 
 ### Why "Right Now"?
 
@@ -115,20 +117,20 @@ to download any special software?
 > A plain text file!
 
 You can edit your text file on your Mac, on your PC, on your smart phone,
-on your tablet, on Mars, and on the mooon&hellip;
+on your tablet, on Mars, and on the moon&hellip;
 
 Moreover, text files are damn fast to edit; **they do not distract you**.
 
 What **JFDI** does is similar:
 
-> **JFDI** maintains *plain text files* in a **synchronization** directory of your choice.
+> **JFDI** maintains *plain text files* in a **synchronization** directory of
+your choice.
 
 If you set your **synchronization** directory to something like:
 
 `/home/procrastinator/Dropbox/JFDI/`
 
-(being /home/procrastinator/Dropbox/ your [Dropbox](http://dropbox.com/) folder)
-
+given that */home/procrastinator/Dropbox/* is your [Dropbox][dropbox] folder,
 **JFDI** will put three text files to that folder:
 
 * **today.txt**,
@@ -137,16 +139,18 @@ If you set your **synchronization** directory to something like:
 
 then you can edit these files wherever you want.
 
-And once you are done, they will be syncronized **everywhere**.
+And once you are done, they will be synchronized **everywhere**.
+
+[dropbox]: http://dropbox.com/
 
 ## When You Don't Have Access to `jfdi` CLI
 
-Since those files are plain text files, you can use **any text editor** to modify them
-even if you don't have access to `jfdi` command line interface.
+Since those files are plain text files, you can use **any text editor** to
+modify them even if you don't have access to `jfdi` command line interface.
 
 > Since **JFDI** data files are plain text files, they are universally portable.
 >
-> For instance you can use an editor like [textastic](http://www.textasticapp.com/)
+> For instance you can use an editor like [textastic][textastic]
 > to edit your goal list on your smart phone or tablet, and then when you are
 > back in front of your computer, you can use `jfdi` to modify
 > those files from where you left.
@@ -157,11 +161,14 @@ It only has a single requirement:
 
     Keep each goal on a separate line.
 
-It will play nicely, as long as you remmember to **keep each goal on its own line**.
+It will play nicely, as long as you remember to **keep each goal on its own
+line**.
 
 And as long as you follow this simple rule, you can edit your text files in
-whichever text editor you like, and when you run `jfdi` again, it will catch up and parse
-the files properly.
+whichever text editor you like, and when you run `jfdi` again, it will catch up
+and parse the files properly.
+
+[textastic]: http://www.textasticapp.com/
 
 ## Supported Platforms
 
@@ -169,10 +176,10 @@ the files properly.
 
 You should be able to run it on **any platform that supports Node.JS**.
 
-It should work properly in all major **Windows**, **Mac OSX**, and **Linux Platforms**.
+It should work properly in all major **Windows**, **Mac OSX**, and **Linux**
+platforms.
 
-If you face any particular issue with your platform
-[file an issue](https://github.com/v0lkan/JFDI/issues/new).
+If you face any particular issue with your platform [file an issue][issue].
 
 ## Project Directory Structure
 
@@ -180,6 +187,8 @@ The directory structure of the project is as follows:
 
 * **test**: Unit tests.
 * **lib**: Helper modules.
+* **i18n**: Localization (*not implemented yet*)
+* **config**: Custom configuration (*not implemented yet*)
 * **data**: Configuration folder (*do not touch*).
 * *index.js*: The entry point of the program.
 * *README.md*: This file you are looking at.
@@ -189,30 +198,32 @@ The directory structure of the project is as follows:
 
 ## Where Can I Get Help?
 
-Here a the places you can get help:
+Here are the places you can get help:
 
 * If you are experiencing a problem, or if you have found a bug, or if you want
-some cool sh\*t to be implemented
-[you can file an issue](https://github.com/v0lkan/JFDI/issues/new);
-* If you want to figure out how a specific command works, this README that you are reading right now will be helpful;
-* And you can always [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
+some cool sh\*t to be implemented [you can file an issue][issue];
+* If you want to figure out how a specific command works, this README that
+you are reading right now will be helpful;
+* And you can always [send an e-mail to **volkan@o2js.com**][me].
 
 ## Where Is the Documentation?
 
-Currently the only documentation is this **README**.
+Currently the only documentation is this **README** file that you are looking
+at. It will be regularly updated as new features are added to the project.
 
 > You can also get command line help if you type `jfdi -h` or
 `jfdi --help` in the console.
 
 In addition to this **README** file, you can also read
-[this o2js.com blog post](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done)
-for usage examples, and installation details.
+[this o2js.com blog post][o2-done] for usage examples, and installation details.
 
 ...
 
->If you write rewiews in your blog,
-[send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com) and it will be
-added to this **README** ASAP.
+>If you write reviews in your blog,
+[send an e-mail to **volkan@o2js.com**][(mailto:volkan@o2js.com)[me] and it will
+be cited here, as an additional resource, ASAP.
+
+[o2-done]: http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done
 
 ## Can I Get the **Cutting-Edge** Version?
 
@@ -224,14 +235,14 @@ than the master branch. You will probably have a "mostly working" app, with inco
 
 > Any code that breaks the tests are generally not pushed to develop, therefore the
 > develop branch is generally safe with missing tests and documentation.
-    
+
 To use the develop branch, `git clone` and `npm link` it as follows:
 
     [root@john.doe:~]#git clone https://github.com/v0lkan/JFDI.git
     [root@john.doe:~]#git checkout develop
     [root@john.doe:~]#cd JFDI
-    [root@john.doe:~]#npm link   
-    
+    [root@john.doe:~]#npm link
+
 If you have issues setting up the develop version, [send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
 
 ## How Do I Setup **JFDI**?
@@ -270,7 +281,7 @@ in the command prompt, and you are done.
 > If the command examples given below do not work for you, replace
 > `jfdi` with `sudo jfdi`, and try them again.
 >
-> If they still fail, [file a bug report](https://github.com/v0lkan/JFDI/issues/new).
+> If they still fail, [file a bug report][issue].
 
 To configure your **JFDI**, just type `jfdi` to the terminal.
 
@@ -281,7 +292,7 @@ And you will get a prompt similar to this:
     ### Set Your JFDI for the First Time ###
 
         It looks like this is the first time you are using JFDI.
-        Dont't worry, it's easy.
+        Don't worry, it's easy.
 
         The only thing you need to configure is a folder to
         store your JFDI data.
@@ -295,7 +306,7 @@ Just type in the **full path** of a valid folder on your system.
 
     prompt: path:  /home/procrastinator/Dropbox/JFDI/
 
-and then press enter. You will get this notification upon success:
+and then press enter. You will get the following notification upon success:
 
     ### Yay! ####
 
@@ -318,8 +329,8 @@ directory:
     -rw-r--r--  1 root root    0 Sep 10 17:22 today.txt
     -rw-r--r--  1 root root    0 Sep 10 17:22 tomorrow.txt
 
-If everything is set up correctly, once you run `jfdi` once more, you will
-get this message:
+If everything is set up correctly, once you run `jfdi` once more, you will get
+the following message:
 
     [root@john.doe:~]# jfdi
 
@@ -350,11 +361,17 @@ Or you can use quotes if you have special characters in your goal:
 
     [root@john.doe:~]# jfdi "Save the cheerleader, (save the world)."
 
+> **Hint**:
+>
+> This quotation feature works similar in all other **JFDI** commands too.
+> So if you have special text which might be parsed as a command, just put it
+> inside quotes to use it.
+
 Here is a sample response:
 
     [root@john.doe:~]# jfdi Save the cheerleader, save the world.
 
-Will output the updated goals list.
+The above command will output the updated goals list.
 
     ### JFDI List For Today ###
 
@@ -366,9 +383,7 @@ Just type `jfdi`.
 
     [root@john.doe:~]# jfdi
 
-will output:
-
-    ### JFDI List For Today ###
+The above command will output:
 
     ### JFDI List For Today ###
 
@@ -380,11 +395,11 @@ will output:
 
 Use `jfdi -d <goal id>`.
 
-For the above list
+For the above list of goals, using
 
     [root@john.doe:~]# jfdi -d 1
 
-Will output:
+will output:
 
     ### JFDI List For Today ###
 
@@ -393,15 +408,63 @@ Will output:
 
 (*note that "buy milk" goal for id 1 has been moved*)
 
+### Appending Text to a Goal
+
+Use `jfdi -m <goal id> -D "<text to append>"`.
+
+Note that you will need to enclose your text in quotes ("") if it has multiple words.
+
+You can also use the parameters in their long forms:
+
+    jfdi --append <goal id> --text "<text to append>"
+
+As in:
+
+    jfdi --append 1 --text " Save the universe, too."
+
+### Prepending Text to a Goal
+
+Use `jfdi -m <goal id> -D "<text to append>"`.
+
+Note that you will need to enclose your text in quotes ("") if it has multiple words.
+
+You can also use the parameters in their long forms:
+
+    jfdi --append <goal id> --text "<text to append>"
+
+As in:
+
+    jfdi --append 1 --text "Find the cheerleader. "
+
+### Replacing Text within a Goal
+
+Use `jfdi -r <goal id> -D "<text to replace>" -w "<replacement>"`.
+You can also use the parameters in their long forms:
+
+    jfdi --replace <goal id> --text "<text to replace>" --with "<replacement>"
+
+As in:
+
+    jfdi --replace 1 --text "Cheerleader" --with "Blonde Immortal Cheerleader"
+
+> **Hint**:
+>
+> The `--replace` parameter accepts regular expressions too.
+> So you can use something like
+>
+>     `jfdi --replace 1 --text "Ch.{2,2}rl[ea][ea]d.r" --with "Blonde Immortal Cheerleader"`
+>
+> and do the same replacement.
+
 ### Listing Deferred Goals
 
 Use `jfdi tomorrow`.
 
-For the above case, using
+For the above **today** queue, using
 
     [root@john.doe:~]# jfdi tomorrow
 
-will output:
+will output something similar to the following:
 
     ### Upcoming JFDI Stuff ###
 
@@ -415,7 +478,8 @@ For the above **tomorrow** queue, using
 
     [root@john.doe:~]# jfdi -e 0
 
-will output:
+
+will output
 
     ### JFDI List For Today ###
 
@@ -423,7 +487,8 @@ will output:
     1 learn kung-fu
     2 Save the cheerleader, save the world.
 
-You can see that "buy milk" goal has been moved to the top of your tomorrow's
+
+You can see that "buy milk" goal has been moved to the top of your **tomorrow**
 queue.
 
 ### Marking a Goal as Done
@@ -448,7 +513,7 @@ Now you know kung fu!
 * Use `jfdi -f <phrase>` for today's goals.
 * Use `jfdi -f <phrase> tomorrow` for tomorrow's goals.
 
-For the above example
+For the above goals list,
 
     [root@john.doe:~]# jfdi -f milk
 
@@ -483,10 +548,13 @@ on the available commands that you can use.
 
 ## Things to Be Implemented
 
-* Listing "done" Goals
-* Undoing a "done" Goal
-* Prioritizing Goals
-* [file an issue if you want more stuff](https://github.com/v0lkan/JFDI/issues/new)
+See the [issue list][issues] for what's coming up next.
+
+> **Hint**:
+>
+> [file an issue if you want more stuff][issue].
+
+[issues]: https://github.com/v0lkan/JFDI/issues
 
 ## Versioning
 
@@ -515,10 +583,12 @@ each version.
 
 * Everything is implemented and tested on the **develop** branch first;
 * Then unit tests are written on the **develop** branch for the changes;
-* Once the [CI](https://travis-ci.org/v0lkan/JFDI) is **all green**,
+* Once the [CI][travis] is **all green**,
 **develop** branch is merged into **master**.
 * ** Once the **master** gives all green on the on the **CI** too, then the
 final module is `npm publish`ed.
+
+[travis]: https://travis-ci.org/v0lkan/JFDI
 
 ## How Do I Contribute?
 
@@ -535,8 +605,7 @@ Contribution is simple. Just follow these steps:
 
 ## I Have A Question
 
-[File an issue](https://github.com/v0lkan/JFDI/issues/new) or
-[Send an e-mail to **volkan@o2js.com**](mailto:volkan@o2js.com).
+[File an issue][issue] or [Send an e-mail to **volkan@o2js.com**][me].
 
 ## License
 
@@ -548,3 +617,6 @@ See [LICENSE.md](LICENSE.md) for details.
 ## Contact Information
 
 **Project Owner**:  [Volkan Özçelik](http://volkan.io/) <volkan@o2js.com>.
+
+[issue]: https://github.com/v0lkan/JFDI/issues/new
+[me]: mailto:volkan@o2j.scom
