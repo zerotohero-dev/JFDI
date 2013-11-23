@@ -41,20 +41,15 @@
 
 ## Every Saga Has a Beginning
 
-It all started with
-[the **JFDI** Methodology](https://gist.github.com/v0lkan/2694911) and
-[the **JFDI** Manifesto](https://gist.github.com/v0lkan/2731233).
+It all started with [the **JFDI** Methodology](https://gist.github.com/v0lkan/2694911) and [the **JFDI** Manifesto](https://gist.github.com/v0lkan/2731233).
 
-> In a nutshell, **JFDI** is a *command line interface* to help you focus what
-> goals you can achieve **right now**.
+> In a nutshell, **JFDI** is a *command line interface* to help you focus what goals you can achieve **right now**.
 
 ## Why a Command Line Interface?
 
 Because, we geeks live in the terminal.
 
-Using something that is already running, and is most of the time available in
-front of your eyes, will help you **overcome the inertia** of launching a
-separate app to manage your goals &ndash; Here's why:
+Using something that is already running, and is most of the time available in front of your eyes, will help you **overcome the inertia** of launching a separate app to manage your goals &ndash; Here's why:
 
 > Adding a **JFDI** goal is as simple as typing `jfdi save the world`.
 >
@@ -66,16 +61,12 @@ separate app to manage your goals &ndash; Here's why:
 > * sync recent data&hellip;
 > * render a pretty UI&hellip;
 >
-> If after all that hassle, you will still need to click an "add task" button,
-> just to add a simple goal, than it is **too much work already**.
+> If after all that hassle, you will still need to click an "add task" button, just to add a simple goal, than it is **too much work already**.
 
-And when it is **too much work**, your subconscious will resist to use that app
-**forever**.
+And when it is **too much work**, your subconscious will resist to use that app **forever**.
 
-* That's why there are **hundreds** of **TODO** applications out there, which
-people have hard time habituating;
-* And that's why the majority of people are not satisfied with their
-"*task management software*".
+* That's why there are **hundreds** of **TODO** applications out there, which people have hard time habituating;
+* And that's why the majority of people are not satisfied with their "*task management software*".
 
 > Now compare how you would **JFDI**, instead:
 >
@@ -85,11 +76,9 @@ people have hard time habituating;
 
 No process can be less interruptive, and faster!
 
-The main aim of the application is to help you accomplish **what need to be get
-done today**, with as little distraction as possible.
+The main aim of the application is to help you accomplish **what need to be get done today**, with as little distraction as possible.
 
-So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates,
-schedules, reminders, labels&hellip; to distract you away in **JFDI**.
+So unlike other productivity <stike>pr\*n</stike> apps, you will not find dates, schedules, reminders, labels&hellip; to distract you away in **JFDI**.
 
 ### Why "Right Now"?
 
@@ -97,41 +86,35 @@ Because it's f\*cking " **JFDI** " !
 
 > Planning Is a Bummer!
 
-Admit it, most of the time you don't plan launching a manless spaceship to the
-moon. Your typical **runway** is something like&hellip;
+Admit it, most of the time you don't plan launching a manless spaceship to the moon. Your typical **runway** is something like&hellip;
 
 * Fix bug id UNP9959: "Unicorns and ponies should live together".
 * Remember the milk.
 * Save the world.
 
-> Why torture your brain by setting *due dates* weeks from now to those simple
-> tasks?!
+> Why torture your brain by setting *due dates* weeks from now to those simple tasks?!
 
 **JFDI** what you can do **right now**, and *bump* the rest to **tomorrow**.
 
 ## It is Plain Text Files, Baby!
 
-Do you know what is universally reachable, and modifiable, without needing to
-download any special software?
+Do you know what is universally reachable, and modifiable, without needing to download any special software?
 
 > A plain text file!
 
-You can edit your text file on your Mac, on your PC, on your smart phone, on
-your tablet, on Mars, and on the moon&hellip;
+You can edit your text file on your Mac, on your PC, on your smart phone, on your tablet, on Mars, and on the moon&hellip;
 
 Moreover, text files are damn fast to edit; **they do not distract you**.
 
 What **JFDI** does is similar:
 
-> **JFDI** maintains *plain text files* in a **synchronization** directory of
-your choice.
+> **JFDI** maintains *plain text files* in a **synchronization** directory of your choice.
 
 If you set your **synchronization** directory to something like:
 
 `/home/procrastinator/Dropbox/JFDI/`
 
-given that */home/procrastinator/Dropbox/* is your [Dropbox][dropbox] folder,
-**JFDI** will put three text files to that folder:
+given that */home/procrastinator/Dropbox/* is your [Dropbox][dropbox] folder, **JFDI** will put three text files to that folder:
 
 * **today.txt**,
 * **tomorrow.txt**,
@@ -145,14 +128,11 @@ And once you are done, they will be synchronized **everywhere**.
 
 ## When You Don't Have Access to `jfdi` CLI
 
-Since those files are plain text files, you can use **any text editor**
-to modify them even if you don't have access to `jfdi` command line interface.
+Since those files are plain text files, you can use **any text editor** to modify them even if you don't have access to `jfdi` command line interface.
 
 > Since **JFDI** data files are plain text files, they are universally portable.
 >
-> For instance you can use an editor like [textastic][textastic] to edit your
-> goal list on your smart phone or tablet, and then when you are back in front
-> of your computer, you can use `jfdi` to modify those files from where you left.
+> For instance you can use an editor like [textastic][textastic] to edit your goal list on your smart phone or tablet, and then when you are back in front of your computer, you can use `jfdi` to modify those files from where you left.
 
 **JFDI** gives you the liberty to modify your files however you like.
 
@@ -160,12 +140,9 @@ It only has a single requirement:
 
     Keep each goal on a separate line.
 
-It will play nicely, as long as you remember to **keep each goal on its own
-line**.
+It will play nicely, as long as you remember to **keep each goal on its own line**.
 
-And as long as you follow this simple rule, you can edit your text files in
-whichever text editor you like, and when you run `jfdi` again, it will catch
-up and parse the files properly.
+And as long as you follow this simple rule, you can edit your text files in whichever text editor you like, and when you run `jfdi` again, it will catch up and parse the files properly.
 
 [textastic]: http://www.textasticapp.com/
 
@@ -175,8 +152,7 @@ up and parse the files properly.
 
 You should be able to run it on **any platform that supports Node.JS**.
 
-It should work properly in all major **Windows**, **Mac OSX**, and **Linux**
-platforms.
+It should work properly in all major **Windows**, **Mac OSX**, and **Linux** platforms.
 
 If you face any particular issue with your platform [file an issue][issue].
 
@@ -207,34 +183,25 @@ are reading right now will be helpful;
 
 ## Where Is the Documentation?
 
-Currently the only documentation is this **README** file that you are looking
-at. It will be regularly updated as new features are added to the project.
+Currently the only documentation is this **README** file that you are looking at. It will be regularly updated as new features are added to the project.
 
-> You can also get command line help if you type `jfdi -h` or `jfdi --help` in
-> the console.
+> You can also get command line help if you type `jfdi -h` or `jfdi --help` in the console.
 
-In addition to this **README** file, you can also read
-[this o2js.com blog post][o2-done] for usage examples, and installation details.
+In addition to this **README** file, you can also read [this o2js.com blog post][o2-done] for usage examples, and installation details.
 
 ...
 
-> If you write reviews in your blog, [send an e-mail to **volkan@o2js.com**][me]
-> and it will be cited here, as an additional resource, ASAP.
+> If you write reviews in your blog, [send an e-mail to **volkan@o2js.com**][me] and it will be cited here, as an additional resource, ASAP.
 
 [o2-done]: http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done
 
 ## Can I Get the **Cutting-Edge** Version?
 
-If you are okay to trade up slight unstability for added coolness, additional
-commands and more features; then you might want to check out
-[the **develop** branch][develop].
+If you are okay to trade up slight unstability for added coolness, additional commands and more features; then you might want to check out [the **develop** branch][develop].
 
-[The develop branch][develop] is more frequently updated than the master branch.
-You will probably have a "mostly working" app, with incomplete tests.
+[The develop branch][develop] is more frequently updated than the master branch. You will probably have a "mostly working" app, with incomplete tests.
 
-> Any code that breaks the tests are generally not pushed to develop, t
-> herefore [the **develop** branch][develop] is generally safe with missing
-> tests and documentation.
+> Any code that breaks the tests are generally not pushed to develop, therefore [the **develop** branch][develop] is generally safe with missing tests and documentation.
 
 To use the **develop** branch, `git clone` and `npm link` it as follows:
 
@@ -243,8 +210,7 @@ To use the **develop** branch, `git clone` and `npm link` it as follows:
     [root@john.doe:~]#cd JFDI
     [root@john.doe:~]#npm link
 
-If you have issues setting up the **develop** version,
-[send an e-mail to **volkan@o2js.com**][me].
+If you have issues setting up the **develop** version, [send an e-mail to **volkan@o2js.com**][me].
 
 [develop]: https://github.com/v0lkan/JFDI/tree/develop
 
@@ -274,15 +240,13 @@ in the command prompt, and you are done.
 
 > **Tip**:
 >
-> For Linux users setting up an alias like `alias j="sudo jfdi";` may save you
-> a few keystrokes.
+> For Linux users setting up an alias like `alias j="sudo jfdi";` may save you a few keystrokes.
 
 > **Tip**:
 >
 > You might need root privileges to use **JFDI**.
 >
-> If the command examples given below do not work for you, replace
-> `jfdi` with `sudo jfdi`, and try them again.
+> If the command examples given below do not work for you, replace `jfdi` with `sudo jfdi`, and try them again.
 >
 > If they still fail, [file a bug report][issue].
 
@@ -321,8 +285,7 @@ and then press enter. You will get the following notification upon success:
 
         for usage examples.
 
-You can further verify everything is set up by checking your **JFDI** data
-directory:
+You can further verify everything is set up by checking your **JFDI** data directory:
 
     [root@john.doe:~]# ls /root/Dropbox/JFDIExample/ -al
     total 8
@@ -332,8 +295,7 @@ directory:
     -rw-r--r--  1 root root    0 Sep 10 17:22 today.txt
     -rw-r--r--  1 root root    0 Sep 10 17:22 tomorrow.txt
 
-If everything is set up correctly, once you run `jfdi` once more, you will get
-the following message:
+If everything is set up correctly, once you run `jfdi` once more, you will get the following message:
 
     [root@john.doe:~]# jfdi
 
@@ -366,9 +328,7 @@ Or you can use quotes if you have special characters in your goal:
 
 > **Tip**:
 >
-> This quotation feature works similar in all other **JFDI** commands too.
-> So if you have special text which might be parsed as a command, just put it
-> inside quotes to use it.
+> This quotation feature works similar in all other **JFDI** commands too. So if you have special text which might be parsed as a command, just put it inside quotes to use it.
 
 Here is a sample response:
 
@@ -415,8 +375,7 @@ will output:
 
 Use `jfdi -m <goal id> -D "<text to append>"`.
 
-Note that you will need to enclose your text in quotes ("") if it has multiple
-words.
+Note that you will need to enclose your text in quotes ("") if it has multiple words.
 
 You can also use the parameters in their long forms:
 
@@ -430,8 +389,7 @@ As in:
 
 Use `jfdi -m <goal id> -D "<text to append>"`.
 
-Note that you will need to enclose your text in quotes ("") if it has multiple
-words.
+Note that you will need to enclose your text in quotes ("") if it has multiple words.
 
 You can also use the parameters in their long forms:
 
@@ -443,8 +401,7 @@ As in:
 
 ### Replacing Text within a Goal
 
-Use `jfdi -r <goal id> -D "<text to replace>" -w "<replacement>"`.
-You can also use the parameters in their long forms:
+Use `jfdi -r <goal id> -D "<text to replace>" -w "<replacement>"`. You can also use the parameters in their long forms:
 
     jfdi --replace <goal id> --text "<text to replace>" --with "<replacement>"
 
@@ -544,10 +501,7 @@ will output:
 
 ...
 
-That's a basic summary of what you can do with **JFDI**. There are many aliases
-to the above commands, so, for example, instead of using
-`jfdi -e <id>` you can use `jfdi --expedite <id>`, too. Type `jfdi --help`
-for more information on the available commands that you can use.
+That's a basic summary of what you can do with **JFDI**. There are many aliases to the above commands; so, for example, instead of using `jfdi -e <id>` you can use `jfdi --expedite <id>`, too. Type `jfdi --help` for more information on the available commands that you can use.
 
 ## Things to Be Implemented
 
@@ -563,31 +517,24 @@ See the [issue list][issues] for what's coming up next.
 
 Each functional change in **JFDI** code increments the version number.
 
-The version of the project is maintained at `package.json`; and it has
-`MAJOR.MINOR.PATCH` format.
+The version of the project is maintained at `package.json`; and it has `MAJOR.MINOR.PATCH` format.
 
 * **MAJOR** version changes are breaking, incompatible API changes.
-* **MINOR** version changes are **enhancements** and **new functionality**
-that have been added in a non-breaking, backwards-compatible manner.
+* **MINOR** version changes are **enhancements** and **new functionality** that have been added in a non-breaking, backwards-compatible manner.
 * **PATCH** version changes are non-breaking, backwards-compatibile **bug fixes**.
 
 With the following exception:
 
-> Although the maintainers of this codebase will try to the best abilities not
-> to introduce breaking changes, any version less than **1.0.0** are exempt
-> from the above rules, and may introduce breaking changes at any time.
+> Although the maintainers of this codebase will try to the best abilities not to introduce breaking changes, any version less than **1.0.0** are exempt from the above rules, and may introduce breaking changes at any time.
 
-Each major version of **JFDI** will be maintained as tagged snapshots for each
-version.
+Each major version of **JFDI** will be maintained as tagged snapshots for each version.
 
 ## Deployment Policy
 
 * Everything is implemented and tested on the **develop** branch first;
 * Then unit tests are written on the **develop** branch for the changes;
-* Once the [CI][travis] is **all green**, **develop** branch is merged into
-**master**.
-* ** Once the **master** gives all green on the on the **CI** too, then the
-final module is `npm publish`ed.
+* Once the [CI][travis] is **all green**, **develop** branch is merged into **master**.
+* ** Once the **master** gives all green on the on the **CI** too, then the final module is `npm publish`ed.
 
 [travis]: https://travis-ci.org/v0lkan/JFDI
 
@@ -600,7 +547,7 @@ Contribution is simple. Just follow these steps:
 1. Fork this repository;
 2. Switch to the **develop** branch (`git checkout develop`);
 2. Create a feature branch (`git checkout -b my-awesome-feature`);
-3. Commit your changes (`git commit -am 'Added a greate feature.');
+3. Commit your changes (`git commit -am 'Added a great feature.');
 4. Push to the branch (`git push origin my-awesome-feature`);
 5. Create a new pull requests.
 
