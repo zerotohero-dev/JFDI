@@ -4,7 +4,7 @@
   "bin": {
     "jfdi": "index.js"
   },
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "A Hacker's Way of Getting $#!% Done",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "grunt": "~0.4.1"
   },
   "dependencies": {
-    "commander": "~2.0.0",
-    "prompt": "~0.2.11"
+    "commander": "~2.1.0",
+    "prompt": "~0.2.12"
   }
 }
