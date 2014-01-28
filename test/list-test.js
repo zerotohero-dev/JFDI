@@ -23,10 +23,12 @@ var vows = require('vows'),
 
 var JFDI = require('../lib/JFDI'),
     runtime = require('../lib/runtime'),
-    command = require('../lib/command');
+    command = require('../lib/command'),
+    display = require('../lib/display');
 
 var oldArguments;
 
+// TODO: move common test stuff to a common module.
 function resetState() {
     delete program.add;
     delete program.find;
@@ -908,6 +910,39 @@ vows.describe('jfdi all').addBatch({
                 expectation = command.handleAll.calledOnce;
 
                 teardown(function() {command.handleAll.restore();});
+
+                return expectation;
+            },
+            'it should list all goals': function(expectation) {
+                assert.equal(expectation, true);
+            }
+        }
+    }
+}).export(module);
+
+vows.describe('jfdi -f foo tomorrow').addBatch({
+    'Issue #27': {
+        'when "jfdi -f foo tomorrow" is called': {
+            topic: function() {
+                var expectation;
+
+                setup(function() {
+                    sinon.stub(JFDI.privates, 'getGoals').returns([{index: 0, item: 'bazinga'}]);
+                    sinon.stub(display, 'printQueryForTomorrow');
+                });
+
+                // Create the command.
+                process.argv = getArgv(this);
+
+                runtime.initialize();
+                runtime.execute();
+
+                expectation = display.printQueryForTomorrow.calledOnce;
+
+                teardown(function() {
+                    JFDI.privates.getGoals.restore();
+                    display.printQueryForTomorrow.restore();
+                });
 
                 return expectation;
             },
