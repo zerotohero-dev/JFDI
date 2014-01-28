@@ -533,7 +533,7 @@ Each major version of **JFDI** will be maintained as tagged snapshots for each v
 * Everything is implemented and tested on the **develop** branch first;
 * Then unit tests are written on the **develop** branch for the changes;
 * Once the [CI][travis] is **all green**, **develop** branch is merged into **master**.
-* ** Once the **master** gives all green on the on the **CI** too, then the final module is `npm publish`ed.
+* Once the **master** gives all green on the on the **CI** too, then the final module is `npm publish`ed.
 
 [travis]: https://travis-ci.org/v0lkan/JFDI
 
