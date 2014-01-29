@@ -946,7 +946,7 @@ vows.describe('jfdi -f foo tomorrow').addBatch({
 
                 return expectation;
             },
-            'it should list all goals': function(expectation) {
+            'it should print "tomorrow" in the header': function(expectation) {
                 assert.equal(expectation, true);
             }
         }
