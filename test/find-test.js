@@ -1,3 +1,5 @@
+'use strict';
+
 /*           ___         ___           ___
  *          /\  \       /\  \         /\  \          ___
  *          \:\  \     /::\  \       /::\  \        /\  \
@@ -15,8 +17,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-'use strict';
-
 /*jshint maxlen:180*/
 
 var vows = require('vows'),
@@ -27,63 +27,8 @@ var vows = require('vows'),
 
 var JFDI = require('../lib/JFDI'),
     runtime = require('../lib/runtime'),
-    command = require('../lib/command');
-
-var oldArguments;
-
-function resetState() {
-    delete program.add;
-    delete program.find;
-    delete program.defer;
-    delete program.expedite;
-    delete program.prioritize;
-    delete program.append;
-    delete program.prepend;
-    delete program.replace;
-    delete program.text;
-    delete program['with'];
-    delete program['do'];
-}
-
-function setup(postSetup) {
-    oldArguments = process.argv;
-
-    resetState();
-
-    // To prevent overwriting data/.root.
-    sinon.stub(fs, 'writeFileSync');
-
-    // To prevent "resource not found " errors.
-    sinon.stub(fs, 'readFileSync', function(path) {
-        return path;
-    });
-
-    // To prevent corrupting real data.
-    JFDI.setDataRoot('');
-
-    if (postSetup) {
-        postSetup();
-    }
-}
-
-function teardown(preTeardown) {
-    if (preTeardown) {
-        preTeardown();
-    }
-
-    fs.writeFileSync.restore();
-    fs.readFileSync.restore();
-
-    process.argv = oldArguments;
-
-    resetState();
-}
-
-function getArgv(test) {
-    return (
-        (typeof test === 'string') ? test : test.suite.subject
-    ).replace('jfdi', 'node .').split(/\s+/);
-}
+    command = require('../lib/command'),
+    helper = require('./helper');
 
 /*----------------------------------------------------------------------------*/
 
@@ -93,10 +38,10 @@ vows.describe('jfdi -f lorem').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -107,7 +52,7 @@ vows.describe('jfdi -f lorem').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -121,17 +66,17 @@ vows.describe('jfdi -f lorem').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -150,10 +95,10 @@ vows.describe('jfdi -f lorem ipsum').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -164,7 +109,7 @@ vows.describe('jfdi -f lorem ipsum').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -178,17 +123,17 @@ vows.describe('jfdi -f lorem ipsum').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -207,10 +152,10 @@ vows.describe('jfdi -f lorem ipsum dolor').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -221,7 +166,7 @@ vows.describe('jfdi -f lorem ipsum dolor').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -235,17 +180,17 @@ vows.describe('jfdi -f lorem ipsum dolor').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -264,10 +209,10 @@ vows.describe('jfdi --find lorem').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -278,7 +223,7 @@ vows.describe('jfdi --find lorem').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -292,17 +237,17 @@ vows.describe('jfdi --find lorem').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -321,10 +266,10 @@ vows.describe('jfdi --find lorem ipsum').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -335,7 +280,7 @@ vows.describe('jfdi --find lorem ipsum').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -349,17 +294,17 @@ vows.describe('jfdi --find lorem ipsum').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -378,10 +323,10 @@ vows.describe('jfdi --find lorem ipsum dolor').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -392,7 +337,7 @@ vows.describe('jfdi --find lorem ipsum dolor').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -406,17 +351,17 @@ vows.describe('jfdi --find lorem ipsum dolor').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -435,10 +380,10 @@ vows.describe('jfdi -f lorem today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -449,7 +394,7 @@ vows.describe('jfdi -f lorem today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -463,17 +408,17 @@ vows.describe('jfdi -f lorem today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -492,10 +437,10 @@ vows.describe('jfdi -f lorem ipsum today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -506,7 +451,7 @@ vows.describe('jfdi -f lorem ipsum today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -520,17 +465,17 @@ vows.describe('jfdi -f lorem ipsum today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -549,10 +494,10 @@ vows.describe('jfdi -f lorem ipsum dolor today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -563,7 +508,7 @@ vows.describe('jfdi -f lorem ipsum dolor today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -577,17 +522,17 @@ vows.describe('jfdi -f lorem ipsum dolor today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -606,10 +551,10 @@ vows.describe('jfdi --find lorem today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -620,7 +565,7 @@ vows.describe('jfdi --find lorem today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -634,17 +579,17 @@ vows.describe('jfdi --find lorem today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -663,10 +608,10 @@ vows.describe('jfdi --find lorem ipsum today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -677,7 +622,7 @@ vows.describe('jfdi --find lorem ipsum today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -691,17 +636,17 @@ vows.describe('jfdi --find lorem ipsum today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -720,10 +665,10 @@ vows.describe('jfdi --find lorem ipsum dolor today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -734,7 +679,7 @@ vows.describe('jfdi --find lorem ipsum dolor today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -748,17 +693,17 @@ vows.describe('jfdi --find lorem ipsum dolor today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -777,10 +722,10 @@ vows.describe('jfdi -f lorem tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -791,7 +736,7 @@ vows.describe('jfdi -f lorem tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -805,17 +750,17 @@ vows.describe('jfdi -f lorem tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -834,10 +779,10 @@ vows.describe('jfdi -f lorem ipsum tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -848,7 +793,7 @@ vows.describe('jfdi -f lorem ipsum tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -862,17 +807,17 @@ vows.describe('jfdi -f lorem ipsum tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -891,10 +836,10 @@ vows.describe('jfdi -f lorem ipsum dolor tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -905,7 +850,7 @@ vows.describe('jfdi -f lorem ipsum dolor tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -919,17 +864,17 @@ vows.describe('jfdi -f lorem ipsum dolor tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -948,10 +893,10 @@ vows.describe('jfdi --find lorem tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -962,7 +907,7 @@ vows.describe('jfdi --find lorem tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -976,17 +921,17 @@ vows.describe('jfdi --find lorem tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -1005,10 +950,10 @@ vows.describe('jfdi --find lorem ipsum tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -1019,7 +964,7 @@ vows.describe('jfdi --find lorem ipsum tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -1033,17 +978,17 @@ vows.describe('jfdi --find lorem ipsum tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleQuery.calledOnce;
 
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },
@@ -1062,10 +1007,10 @@ vows.describe('jfdi --find lorem ipsum dolor tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -1076,7 +1021,7 @@ vows.describe('jfdi --find lorem ipsum dolor tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -1090,10 +1035,10 @@ vows.describe('jfdi --find lorem ipsum dolor tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleQuery');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleQuery');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
@@ -1101,7 +1046,7 @@ vows.describe('jfdi --find lorem ipsum dolor tomorrow').addBatch({
                 expectation = command.privates.handleQuery.calledOnce;
 
                 // Teardown.
-                teardown(function() {command.privates.handleQuery.restore();});
+                helper.teardown(function() {command.privates.handleQuery.restore();});
 
                 return expectation;
             },

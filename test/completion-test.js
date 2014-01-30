@@ -1,3 +1,5 @@
+'use strict';
+
 /*           ___         ___           ___
  *          /\  \       /\  \         /\  \          ___
  *          \:\  \     /::\  \       /::\  \        /\  \
@@ -15,8 +17,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-'use strict';
-
 /*jshint maxlen:180*/
 
 var vows = require('vows'),
@@ -27,63 +27,8 @@ var vows = require('vows'),
 
 var JFDI = require('../lib/JFDI'),
     runtime = require('../lib/runtime'),
-    command = require('../lib/command');
-
-function resetState() {
-    delete program.add;
-    delete program.find;
-    delete program.defer;
-    delete program.expedite;
-    delete program.prioritize;
-    delete program.append;
-    delete program.prepend;
-    delete program.replace;
-    delete program.text;
-    delete program['with'];
-    delete program['do'];
-}
-
-var oldArguments;
-
-function setup(postSetup) {
-    oldArguments = process.argv;
-
-    resetState();
-
-    // To prevent overwriting data/.root.
-    sinon.stub(fs, 'writeFileSync');
-
-    // To prevent "resource not found " errors.
-    sinon.stub(fs, 'readFileSync', function(path) {
-        return path;
-    });
-
-    // To prevent corrupting real data.
-    JFDI.setDataRoot('');
-
-    if (postSetup) {
-        postSetup();
-    }
-}
-
-function teardown(preTeardown) {
-    if (preTeardown) {
-        preTeardown();
-    }
-
-    fs.writeFileSync.restore();
-    fs.readFileSync.restore();
-
-    process.argv = oldArguments;
-
-    resetState();
-}
-
-function getArgv(test) {
-    return (
-        (typeof test === 'string') ? test : test.suite.subject
-    ).replace('jfdi', 'node .').split(/\s+/);
-}
+    command = require('../lib/command'),
+    helper = require('./helper');
 
 /*----------------------------------------------------------------------------*/
 
@@ -93,10 +38,10 @@ vows.describe('jfdi 0').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -107,7 +52,7 @@ vows.describe('jfdi 0').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -121,17 +66,17 @@ vows.describe('jfdi 0').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleComplete');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleComplete');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleComplete.calledOnce;
 
-                teardown(function() {command.privates.handleComplete.restore();});
+                helper.teardown(function() {command.privates.handleComplete.restore();});
 
                 return expectation;
             },
@@ -150,10 +95,10 @@ vows.describe('jfdi 0 today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -164,7 +109,7 @@ vows.describe('jfdi 0 today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -178,17 +123,17 @@ vows.describe('jfdi 0 today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleComplete');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleComplete');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleComplete.calledOnce;
 
-                teardown(function() {command.privates.handleComplete.restore();});
+                helper.teardown(function() {command.privates.handleComplete.restore();});
 
                 return expectation;
             },
@@ -207,10 +152,10 @@ vows.describe('jfdi 0 tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -221,7 +166,7 @@ vows.describe('jfdi 0 tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -235,17 +180,17 @@ vows.describe('jfdi 0 tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
 
-                teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
+                helper.teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
 
                 return expectation;
             },
@@ -264,10 +209,10 @@ vows.describe('jfdi -x 0').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -278,7 +223,7 @@ vows.describe('jfdi -x 0').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -292,17 +237,17 @@ vows.describe('jfdi -x 0').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleComplete');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleComplete');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleComplete.calledOnce;
 
-                teardown(function() {command.privates.handleComplete.restore();});
+                helper.teardown(function() {command.privates.handleComplete.restore();});
 
                 return expectation;
             },
@@ -321,10 +266,10 @@ vows.describe('jfdi -x 0 today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -335,7 +280,7 @@ vows.describe('jfdi -x 0 today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -350,17 +295,17 @@ vows.describe('jfdi -x 0 today').addBatch({
                 var expectation;
 
                 // Setup.
-                setup(function() {sinon.stub(command.privates, 'handleComplete');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleComplete');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleComplete.calledOnce;
 
-                teardown(function() {command.privates.handleComplete.restore();});
+                helper.teardown(function() {command.privates.handleComplete.restore();});
 
                 return expectation;
             },
@@ -379,10 +324,10 @@ vows.describe('jfdi -x 0 tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -393,7 +338,7 @@ vows.describe('jfdi -x 0 tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -407,10 +352,10 @@ vows.describe('jfdi -x 0 tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
@@ -418,7 +363,7 @@ vows.describe('jfdi -x 0 tomorrow').addBatch({
                 expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
 
                 // Teardown.
-                teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
+                helper.teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
 
                 return expectation;
             },
@@ -437,10 +382,10 @@ vows.describe('jfdi --do 0 tomorrow').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -451,7 +396,7 @@ vows.describe('jfdi --do 0 tomorrow').addBatch({
                     args[4] === 'tomorrow' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -465,17 +410,17 @@ vows.describe('jfdi --do 0 tomorrow').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleCompleteIncorrectRealm');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleCompleteIncorrectRealm.calledOnce;
 
-                teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
+                helper.teardown(function() {command.privates.handleCompleteIncorrectRealm.restore();});
 
                 return expectation;
             },
@@ -494,10 +439,10 @@ vows.describe('jfdi --do 0 today').addBatch({
             topic: function() {
                 var args, expectation;
 
-                setup();
+                helper.setup();
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
 
@@ -508,7 +453,7 @@ vows.describe('jfdi --do 0 today').addBatch({
                     args[4] === 'today' &&
                     args.length === 5;
 
-                teardown();
+                helper.teardown();
 
                 return expectation;
             },
@@ -522,17 +467,17 @@ vows.describe('jfdi --do 0 today').addBatch({
             topic: function() {
                 var expectation;
 
-                setup(function() {sinon.stub(command.privates, 'handleComplete');});
+                helper.setup(function() {sinon.stub(command.privates, 'handleComplete');});
 
                 // Create the command.
-                process.argv = getArgv(this);
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
                 expectation = command.privates.handleComplete.calledOnce;
 
-                teardown(function() {command.privates.handleComplete.restore();});
+                helper.teardown(function() {command.privates.handleComplete.restore();});
 
                 return expectation;
             },
@@ -548,13 +493,13 @@ vows.describe('jfdi --do 0 today').addBatch({
 /* Bug-related tests below                                                    */
 /*----------------------------------------------------------------------------*/
 
-vows.describe('#33 - done.txt should not log "undefined"').addBatch({
-    '#33': {
+vows.describe('jfdi 0').addBatch({
+    'Issue #33': {
         'when "jfdi 0" is called': {
             topic: function() {
-                var expectation;
+                var expectation = false;
 
-                setup(function(){
+                helper.setup(function(){
                     sinon.stub(JFDI.privates, 'getTodayGoals').returns([{item: 'bazinga'}]);
                     sinon.stub(JFDI.privates, 'persistTodayGoals');
                     sinon.stub(JFDI.privates, 'appendDoneGoals', function(item) {
@@ -563,12 +508,12 @@ vows.describe('#33 - done.txt should not log "undefined"').addBatch({
                 });
 
                 // Create the command.
-                process.argv = getArgv('jfdi 0');
+                process.argv = helper.getArgv(this);
 
                 runtime.initialize();
                 runtime.execute();
 
-                teardown(function(){
+                helper.teardown(function(){
                     JFDI.privates.getTodayGoals.restore();
                     JFDI.privates.persistTodayGoals.restore();
                     JFDI.privates.appendDoneGoals.restore();
