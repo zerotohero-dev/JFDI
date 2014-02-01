@@ -33,7 +33,6 @@ var JFDI = require('../lib/JFDI'),
 /*----------------------------------------------------------------------------*/
 
 //TODO: convert all tests to this format.
-//TODO: the above functions are commonly shared; move them to a utility module.
 helper.createVow(
     'jfdi foo',
     'it should translate to "jfdi --add foo today"',
