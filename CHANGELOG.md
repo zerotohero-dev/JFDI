@@ -1,3 +1,7 @@
+# 0.10.1
+
+* Removed inline comments. We'll use an external documentation instead.
+
 # 0.10.0
 
 * Fixed "undefined" lines in `done.txt` when a goal is completed.
