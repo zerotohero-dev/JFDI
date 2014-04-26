@@ -1,8 +1,23 @@
-# 0.10.1
+# v.2.0.0
+
+* - to be tagged
+
+# v.1.x.x
+
+* -
+
+# v.1.0.2
 
 * Removed inline comments. We'll use an external documentation instead.
+* Goal listings are capped to 10 goals at a time.
 
-# 0.10.0
+# v.1.0.0
+
+* Stable release (tagged).
+* Implemented all basic functionality.
+* Passing all tests.
+
+# v.0.10.0
 
 * Fixed "undefined" lines in `done.txt` when a goal is completed.
 
